@@ -8,43 +8,55 @@ format:
     toc-title: Gap Analysis 
     toc-location: left
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Introduction
-This document is here to provide descrepancies in the data located on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessiblity and useability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide a full synthesis of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. This document is broken down into five main categories representing the five main data sets used in this project. The five main datasets are as follows: `Actual Water Shortage Level`, `Five Year Water Shortage Outlook`, `Historical Production and Delivery`, `Monthly Water Shortage Outlook`, and `Source Name`. 
 
+This document is here to provide discrepancies in the data located on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessibility and usability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide a full synthesis of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. This document is broken down into five main categories representing the five main data sets used in this project. The five main data sets are as follows: `Actual Water Shortage Level`, `Five Year Water Shortage Outlook`, `Historical Production and Delivery`, `Monthly Water Shortage Outlook`, and `Source Name`.
 
+```{r}
+# load in libraries
 
+library(tidyverse)
+library(here)
+
+# load in data
+
+actual_water_shortage_level <- read_csv(here("data", "actual_water_shortage_level.csv"))
+five_year_water_shortage_outlook <- read_csv(here("data", "five_year_water_shortage_outlook.csv"))
+historical_production_delivery <- read_csv(here("data", "historical_production_delivery.csv"))
+monthly_water_shortage_outlook <- read_csv(here("data", "monthly_water_shortage_outlook.csv"))
+source_name <- read_csv(here("data", "source_name.csv"))
+```
 
 ## Actual Water Shortage Level
 
 ### Dataset Description
 
-
-
-
 ## Five Year Water Shortage Outlook
 
 ### Dataset Description
-
-
-
 
 ## Historical Production and Delivery
 
 ### Dataset Description
 
+```{r}
+# NAs in dataset
+sum(is.na(historical_production_delivery))
 
+# negative values in quantity acre feet
+negative_quantity_historical <- historical_production_delivery |> 
+  filter(quantity_acre_feet < 0)
 
+```
 
 ## Monthly Water Shortage Outlook
 
 ### Dataset Description
 
-
-
-
-## Source Name 
+## Source Name
 
 ### Dataset Description
-
