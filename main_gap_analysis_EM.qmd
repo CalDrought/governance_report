@@ -1,0 +1,93 @@
+---
+title: "main gap analysis historical"
+format: html
+---
+
+## Historical Production and Delivery Dataset
+
+The Historical Production and Delivery Dataset shows the amount of water (acre-feet) from each water district that is produced for that district and supplied by that district. This information is separated by water type. 
+
+### Issue 1
+
+The amount of N/As in the dataset. This prevents the data from being easy to interpret and could lead to misinformation.
+
+```{r}
+sum(is.na(historical_production_delivery))
+```
+Solution 1 (refer to appendix for code)
+
+Temporary (how we are fixing it) solution: 
+
+we will visualize amount of NAs in dashboard and omit them from calculations
+
+Ideal (our suggestions for better governance) solution
+
+NAs are removed/replaced OR metadata explanation for NAs provided
+
+### Issue 2
+
+The negative numbers in `quantity_acre_feet` column. This does not make sense as water quantity cannot be negative
+
+```{r}
+historical_production_delivery |> 
+  na.omit() |> 
+  filter(quantity_acre_feet < 0) |> 
+  nrow()
+```
+
+Solution 2 (refer to appendix for code)
+
+Remove negative numbers from dataset 
+
+temporary solution: 
+remove negative numbers
+
+ideal solution
+find correct input and replace numbers
+
+### Issue 3
+
+Lack of clear distinction between N/As meaning non applicable or N/As meaning the information was missed or skipped 
+
+### Issue 4
+
+currently not up to date
+
+#### Appendix
+
+Issue 1
+```{r}
+# check amount of NAs for entire dataset
+sum(is.na(historical_production_delivery))
+
+# check amount of NAs for individual columns
+sum(is.na(historical_production_delivery$pwsid))
+sum(is.na(historical_production_delivery$water_system_name))
+sum(is.na(historical_production_delivery$org_id))
+sum(is.na(historical_production_delivery$start_date))
+sum(is.na(historical_production_delivery$end_date))
+sum(is.na(historical_production_delivery$water_produced_or_delivered))
+sum(is.na(historical_production_delivery$water_type))
+# currently all NAs located in quantity acre feet column
+sum(is.na(historical_production_delivery$quantity_acre_feet))
+
+# remove NAs from daatset
+
+historical_production_delivery <- na.omit(historical_production_delivery)
+```
+Issue 2
+```{r}
+# check amount of rows with negative numbers
+historical_production_delivery |> 
+  na.omit() |> 
+  filter(quantity_acre_feet < 0) |> 
+  nrow()
+
+# remove rows with negative numbers
+historical_production_delivery <- historical_production_delivery |> 
+  na.omit() |> 
+  filter(quantity_acre_feet <=0) |> 
+
+# replace rows the negative numbers
+
+```

@@ -43,17 +43,7 @@ source_name <- read_csv(here("data", "source_name.csv"))
 
 ### Dataset Description
 
-```{r}
-# NAs in dataset
-sum(is.na(historical_production_delivery))
-
-# negative values in quantity acre feet
-negative_quantity_historical <- historical_production_delivery |> 
-  filter(quantity_acre_feet < 0)
-
-```
-
-## Monthly Water Shortage Outlook
+### Monthly Water Shortage Outlook
 
 ### Dataset Description
 
