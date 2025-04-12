@@ -9,7 +9,7 @@ format:
     toc-location: left
 editor: visual
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Introduction
@@ -21,6 +21,7 @@ This document is here to provide discrepancies in the data located on the [Calif
 
 library(tidyverse)
 library(here)
+library(gt)
 
 # load in data
 
@@ -60,3 +61,53 @@ negative_quantity_historical <- historical_production_delivery |>
 ## Source Name
 
 ### Dataset Description
+
+Forecasted Monthly Water Shortage (Level/percentage/quantity)
+
+The California Water Code requires each urban water supplier to provide a description of the data used to characterize and quantify the water use types and water demands in their UWMP. This dataset was created to provide **forecasted** monthly (and annual) potable water shortage (or surplus) with and without shortage actions for a dry year. The Annual Water Supply and Demand Assessment (AWSDA) reports this data. All data reported through the AWSDA are available on the DWR’s Water Use Efficiency (WUE) portal\
+\
+Suppliers report the numbers of their estimated total annual demands based on their planning cycle (from July – June Planning Cycle: Suppliers with a current planning cycle starting on the July due date and ending on the following June)
+
+**Issues:**
+
+1.  **Missing Values Assessment** – When calculating the number of missing values (NAs), it's important to consider the reporting frequency. For example, in the case of annual reporting, only one data point is expected per year, and the remaining 11 months will naturally contain NAs. These should not be counted as missing values. The same logic applies to bi-annual reporting, where only two data points are expected per year.
+
+    ```{r}
+
+    annual_reporting_eg <- monthly_water_shortage_outlook %>%
+       select("org_id", "supplier_name", "reporting_interval", "shortage_surplus_acre_feet")%>%
+      filter(supplier_name == "City of Alhambra")
+
+    annual_reporting_eg %>%
+      gt() %>%
+      tab_header(
+        title = "Annual Reporting Example",
+        subtitle = "Filtered for: Alhambra City of"
+      )
+
+    annual_reporting_eg
+    ```
+
+    ![](images/clipboard-3092360758.png)
+
+    Solution 1 (refer to appendix for code)
+
+    Use the `dropna()` function specifically on the dataset subset corresponding to the expected reporting frequency (e.g., annual or bi-annual) *before* calculating the total number of NAs. This ensures that structurally expected NAs are not incorrectly flagged as data issues.
+
+2.  **Standardize Naming**:\
+
+    `supplier_name` could be normalized or matched against a unique registry to reduce duplicates or misspellings.
+
+    Solution 2
+
+    Add to the reporting form the list of water districts where user can select from
+
+3.  **Column descriptions**:\
+
+    Consider including a data dictionary for external users—some field names are intuitive (`shortage_surplus_percent`), others less so (`is_wscp_action`).
+
+4.  **Add Units**:\
+
+    While most fields likely use acre-feet and percentages, having units explicitly in column names or metadata improves clarity (e.g., `shortage_surplus_percent (%)`).
+
+5.  
