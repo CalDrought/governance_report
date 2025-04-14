@@ -5,7 +5,9 @@ format: html
 
 ## Historical Production and Delivery Dataset
 
-The Historical Production and Delivery Dataset shows the amount of water (acre-feet) from each water district that is produced for that district and supplied by that district. This information is separated by water type. 
+### Description
+
+The Historical Production and Delivery dataframe provides data about water production and delivery from 2013-2022. The columns are PWSID, water system name, org id, start date, end date, water produced or delivered, water type, and quantity acre feet. It should be noted that the water type column contains both produced water types and delivered water types. The first step when working with the data for analysis should be to filter the water produced or delivered column for produced or delivered. This will then allow for ease of analysis. 
 
 ### Issue 1
 
@@ -14,9 +16,10 @@ The amount of N/As in the dataset. This prevents the data from being easy to int
 ```{r}
 sum(is.na(historical_production_delivery))
 ```
+
 Solution 1 (refer to appendix for code)
 
-Temporary (how we are fixing it) solution: 
+Temporary (how we are fixing it) solution:
 
 we will visualize amount of NAs in dashboard and omit them from calculations
 
@@ -37,17 +40,15 @@ historical_production_delivery |>
 
 Solution 2 (refer to appendix for code)
 
-Remove negative numbers from dataset 
+Remove negative numbers from dataset
 
-temporary solution: 
-remove negative numbers
+temporary solution: remove negative numbers
 
-ideal solution
-find correct input and replace numbers
+ideal solution find correct input and replace numbers
 
 ### Issue 3
 
-Lack of clear distinction between N/As meaning non applicable or N/As meaning the information was missed or skipped 
+Lack of clear distinction between N/As meaning non applicable or N/As meaning the information was missed or skipped
 
 ### Issue 4
 
@@ -56,6 +57,7 @@ currently not up to date
 #### Appendix
 
 Issue 1
+
 ```{r}
 # check amount of NAs for entire dataset
 sum(is.na(historical_production_delivery))
@@ -75,7 +77,9 @@ sum(is.na(historical_production_delivery$quantity_acre_feet))
 
 historical_production_delivery <- na.omit(historical_production_delivery)
 ```
+
 Issue 2
+
 ```{r}
 # check amount of rows with negative numbers
 historical_production_delivery |> 
@@ -86,7 +90,7 @@ historical_production_delivery |>
 # remove rows with negative numbers
 historical_production_delivery <- historical_production_delivery |> 
   na.omit() |> 
-  filter(quantity_acre_feet <=0) |> 
+  filter(quantity_acre_feet <=0) 
 
 # replace rows the negative numbers
 
