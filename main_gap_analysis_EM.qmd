@@ -7,29 +7,23 @@ format: html
 
 ### Description
 
-The Historical Production and Delivery dataframe provides data about water production and delivery from 2013-2022. The columns are PWSID, water system name, org id, start date, end date, water produced or delivered, water type, and quantity acre feet. It should be noted that the water type column contains both produced water types and delivered water types. The first step when working with the data for analysis should be to filter the water produced or delivered column for produced or delivered. This will then allow for ease of analysis. 
+The Historical Production and Delivery dataframe provides data about water production and delivery from 2013-2022. The columns are PWSID, water system name, org id, start date, end date, water produced or delivered, water type, and quantity acre feet. It should be noted that the water type column contains both produced water types and delivered water types. The first step when working with the data for analysis should be to filter the water produced or delivered column for either produced OR delivered. This will then allow for ease of analysis.
 
 ### Issue 1
 
-The amount of N/As in the dataset. This prevents the data from being easy to interpret and could lead to misinformation.
+The first issue is the amount of N/As in the dataset. This prevents the data from being easy to interpret and could lead to misinformation. There are currently 111414 NAs in this data alone.
 
 ```{r}
 sum(is.na(historical_production_delivery))
 ```
 
-Solution 1 (refer to appendix for code)
+#### Solution 1 (refer to appendix for code)
 
-Temporary (how we are fixing it) solution:
-
-we will visualize amount of NAs in dashboard and omit them from calculations
-
-Ideal (our suggestions for better governance) solution
-
-NAs are removed/replaced OR metadata explanation for NAs provided
+In order to work with this data and prevent misinformation, NAs were omitted from summary statistic calculations, but are shown in the missing values widget of the dashboard. Ideally, the NAs will be removed and/or replaced in this dataset. Another option is more detailed metadata, that could explain why there are so many NAs and what they mean.
 
 ### Issue 2
 
-The negative numbers in `quantity_acre_feet` column. This does not make sense as water quantity cannot be negative
+There are negative numbers in the `quantity_acre_feet` column. This does not make sense as water quantity cannot be negative. Currently there are 280 negative values in the `quantity_acre_feet` column 
 
 ```{r}
 historical_production_delivery |> 
@@ -38,21 +32,26 @@ historical_production_delivery |>
   nrow()
 ```
 
-Solution 2 (refer to appendix for code)
+#### Solution 2 (refer to appendix for code)
 
-Remove negative numbers from dataset
+The temporary solution for analysis and visualization is to remove the negative numbers from the column. Although 280 is a very small number in comparison to the 902 thousand rows present in the table, it's still best practice to remove them when calculating summary statistics. If the negative sign was added by accident and the absolute value of the numbers is correct, those can be replaced easily for the right numbers. If the absolute values are not correct, replacing them with NAs or the correct value is necessary.
 
-temporary solution: remove negative numbers
-
-ideal solution find correct input and replace numbers
 
 ### Issue 3
 
-Lack of clear distinction between N/As meaning non applicable or N/As meaning the information was missed or skipped
+Lack of clear distinction between N/As, meaning that there is no distinction between non-applicable values and missing information.
+
+#### Solution 3
+
+Have detailed metadata explaining the difference and how to identify that. If the difference is not identifiable, that should also be clear in the metadata.
 
 ### Issue 4
 
 currently not up to date
+
+#### Solution 4
+
+While the metadata does explain the lack of entries for recent years, in the future, years will continue to be updated to allow for meaningful analysis. 
 
 #### Appendix
 
@@ -92,6 +91,5 @@ historical_production_delivery <- historical_production_delivery |>
   na.omit() |> 
   filter(quantity_acre_feet <=0) 
 
-# replace rows the negative numbers
 
 ```
