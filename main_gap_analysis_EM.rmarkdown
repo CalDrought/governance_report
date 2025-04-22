@@ -3,6 +3,7 @@ title: "main gap analysis historical"
 format: html
 ---
 
+
 ## Historical Production and Delivery Dataset
 
 ### Description
@@ -13,9 +14,11 @@ The Historical Production and Delivery dataframe provides data about water produ
 
 The first issue is the amount of N/As in the dataset. This prevents the data from being easy to interpret and could lead to misinformation. There are currently 111414 NAs in this data alone.
 
+
 ```{r}
 sum(is.na(historical_production_delivery))
 ```
+
 
 #### Solution 1 (refer to appendix for code)
 
@@ -25,12 +28,14 @@ In order to work with this data and prevent misinformation, NAs were omitted fro
 
 There are negative numbers in the `quantity_acre_feet` column. This does not make sense as water quantity cannot be negative. Currently there are 280 negative values in the `quantity_acre_feet` column 
 
+
 ```{r}
 historical_production_delivery |> 
   na.omit() |> 
   filter(quantity_acre_feet < 0) |> 
   nrow()
 ```
+
 
 #### Solution 2 (refer to appendix for code)
 
@@ -57,6 +62,7 @@ While the metadata does explain the lack of entries for recent years, in the fut
 
 Issue 1
 
+
 ```{r}
 # check amount of NAs for entire dataset
 sum(is.na(historical_production_delivery))
@@ -77,7 +83,9 @@ sum(is.na(historical_production_delivery$quantity_acre_feet))
 historical_production_delivery <- na.omit(historical_production_delivery)
 ```
 
+
 Issue 2
+
 
 ```{r}
 # check amount of rows with negative numbers
@@ -93,3 +101,4 @@ historical_production_delivery <- historical_production_delivery |>
 
 
 ```
+

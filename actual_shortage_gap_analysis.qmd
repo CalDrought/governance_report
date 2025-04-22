@@ -1,0 +1,329 @@
+---
+title: "Actual Shortage Information"
+author: "Takeen Shamloo"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format: html
+editor: visual
+---
+
+## Data: Actual Water Shortage
+
+#### Description:
+
+[Link To Data](https://data.cnra.ca.gov/dataset/57b20340-2b03-4c22-bc52-b59047451496/resource/c3832742-5525-442d-b762-59453d500aba/download/actual_water_shortage_level.csv)
+
+This table reports the monthly state standard shortage level by urban retail water suppliers, which are generally defined as agencies serving over 3,000 service connections or deliveries 3,000 acre-feet of water annually for municipal purposes. These data are collected by the State Water Resources Control Board through its monthly Conservation Reporting and the data included in this dataset represent a small component of the larger dataset. Information about these reports can be found on the [Water Conservation Portal](https://www.waterboards.ca.gov/water_issues/programs/conservation_portal/conservation_reporting.html), which is no longer active, and the full data (which represents the source data for this dataset) are available on the [California Open Data Portal](https://data.ca.gov/dataset/urws-conservation-supply-demand). Beginning in 2023, the reporting of these data transitioned to the SAFER Clearinghouse.
+
+Data use limitations: Prior to 2022, shortage levels were not standardized, which makes the data difficult to use. This dataset was filtered to include 2022 onwards where shortage levels are standardized.
+
+```{r}
+#| warning: false
+
+# Load Packages
+library(tidyverse)
+library(janitor)
+library(here)
+library(dplyr)
+```
+
+### Load Data
+
+```{r}
+shortage_df <- read.csv(here("data", "actual_water_shortage_level.csv"))
+```
+
+### Issue 1: Our actual shortage data is limited to only WY 2022, 2023, and half
+
+of 2024. We are limited 31 months worth of data starting Jan 01, 2022 - July 31, 2024.
+
+#### Lets take a look at the dates
+
+##### Start Dates
+
+```{r}
+# Get unique start_date values
+all_start_dates <- shortage_df |>
+  distinct(start_date) |>
+  arrange(start_date)
+
+# all_start_dates
+```
+
+##### End Dates
+
+```{r}
+# Get unique end_date values
+all_end_dates <- shortage_df |>
+  distinct(end_date) |>
+  arrange(end_date)
+
+# all_end_dates
+```
+
+There are 31 observations and 31 months between the first/last start and end dates.
+
+First Start_date: 01/01/2022, Last Start_date: 07/01/2024
+
+First End_date: 01/31/2022, Last End_date: 07/31/2024
+
+### Solution 1: None. More Consistent Data Collection.
+
+### Issue 2: Given our data is qualiatative and was most recently standardized
+
+as of Jan 01, 2022. Although we do not directly have access to data before WY 2022. Though due to inconsistencies in adopting the standard we can notice that although we have observations for the first 2 months all of our locations have NA values. Whether that's due to the districts not reporting it or whether it wasn't translatable to our new standard is unclear.
+
+```{r}
+# Count of NA's by start_date.
+shortage_df |>
+  group_by(start_date) |>
+  summarise(
+    na_count = sum(is.na(state_standard_shortage_level)),
+    unique_orgs = n_distinct(org_id)
+  ) |>
+  head(2)
+```
+
+### Solution 2: None. Maintain the standard for future data additions.
+
+### Issue 3: Following up with Issue 2. From our data we can also prcieve that
+
+even past the adoption date beginning 2022 we do have a decent amount of `NA` values within our data. We do not know where these values come from as our range should be between c(0, 6) where 0 is `No Shortage` and 6 is `>50% shortage`.
+
+```{r}
+# Count of NA's by start_date.
+shortage_df |>
+  group_by(start_date) |>
+  summarise(
+    na_count = sum(is.na(state_standard_shortage_level)),
+    unique_orgs = n_distinct(org_id)
+  ) |>
+  slice(-c(1,2))
+```
+
+### Solution 3: None. Requires Better Accountability when reporting and recording data.
+
+# No issues with ORG_ID or PWSID
+
+```{r}
+shortage_df |>
+  group_by(org_id) |>
+  summarise(unique_pwsid_count = n_distinct(pwsid))
+```
+
+### Data Exploration
+
+#### Check Dimensions / Column Names
+
+```{r}
+# Dimensions of the Data Frame.
+cat("Number of rows: ", dim(shortage_df)[1], "\nNumber of columns: ", dim(shortage_df)[2])
+
+# Column names.
+cat("\nAll Columns Names:\n", colnames(shortage_df))
+```
+
+#### Find out number of NA's per column
+
+```{r}
+# Tabled number of NA's per column. 
+data.frame(Column = names(shortage_df), NA_Count = colSums(is.na(shortage_df)))
+```
+
+#### Find the frequency of each org_id
+
+```{r}
+# Get number of instances of each unique `org_id`.
+freq_orgID <- shortage_df |>
+  count(org_id, name = "Num_instance_OrgID") 
+
+head(freq_orgID)
+```
+
+Noticing that there is a trend with the frequency of each org id seeing values of 28-31 I'm thinking we might see a max number of observations which might be an insight to their reporting period? Lets find out how high or low these values go.
+
+#### Find the min & max frequency numbers for `org_id`
+
+```{r}
+# Grouping our data by org_id and finding min/max frequencies for an org_id.
+minmax_count_orgID <- shortage_df |>
+  count(org_id, name = "Num_instance_orgID") |>
+  summarise(max_num_instance = max(Num_instance_orgID),
+            min_num_instance = min(Num_instance_orgID))
+
+cat("Highest Frequency Reported:", minmax_count_orgID[[1]], "observations for an org_id.")
+cat("\nLowest Frequency Reported:", minmax_count_orgID[[2]], "observations for an org_id.")
+```
+
+The highest shows us that 31 observations which I'm going to assuming follows the trend for the Monthly reporting criteria. A low of 12 we can assume for now means that the data was unreported. It could be important to see what org_id dates are missing as well. For now lets do the same analysis on our PWSID column to see if we have similar findings.
+
+```{r}
+# Get number of instances of each unique `pwsid`
+freq_pwsID <- shortage_df |>
+  count(pwsid, name = "Num_instance_pwsID") 
+
+head(freq_pwsID)
+```
+
+```{r}
+minmax_count_pwsID <- shortage_df |>
+  count(pwsid, name = "Num_instance_pwsID") |>
+  summarise(max_num_instance = max(Num_instance_pwsID),
+            min_num_instance = min(Num_instance_pwsID))
+
+
+cat("Max # Instances:", minmax_count_pwsID[[1]])
+cat("\nMin # Instances:", minmax_count_pwsID[[2]])
+```
+
+Our output results look similar if not the same I'm thinking it would be a good idea to group by `org_id` and `pwsid` to see if we have a similarly sized output dataframe.
+
+#### GroupBy `org_id` and `pwsid` and find if frequencies match.
+
+```{r}
+freq_both <- shortage_df |>
+  count(org_id, pwsid, name = "Num_instance_both") |>
+  left_join(freq_orgID, by = "org_id") |> # Use quotes for column name
+  left_join(freq_pwsID, by = "pwsid") |>  # Use quotes for column name
+  mutate(
+    Matches_OrgID = Num_instance_both == Num_instance_OrgID,
+    Matches_PWSID = Num_instance_both == Num_instance_pwsID
+  )
+
+head(freq_both)
+```
+
+#### Any frequency values that don't match?
+
+```{r}
+mismatches <- freq_both |>
+  filter(!Matches_OrgID | !Matches_PWSID)  # Keep only FALSE matches
+
+head(mismatches)
+```
+
+From our results we can interperet that each unique org_id has a corresponding pwsid or set of pwsid(s) that correspond to them. The `org_id`'s and `pwsid`'s frequencies match frequency values and the \# of the observations didn't change compared to the frequency calculations we performed on the individual variables.
+
+### Missing Data
+
+For this sections lets take a look at only our missing data to see what we can infer. Information we would like to see include things such as:
+
+-   What suppliers are struggling to produce data?
+
+#### How many unique suppliers do we have?
+
+```{r}
+num_unique_suppliers <- shortage_df |>
+  summarise(Unique_Suppliers = n_distinct(supplier_name))
+
+cat("There are", num_unique_suppliers$Unique_Suppliers, "unique suppliers.")
+```
+
+We have 405 unique `supplier_name`'s. We also have 405 unique `org_id`'s and `pwsid`'s. This indicates that we can look to group by the 3.
+
+#### Subset of all *1,282* missing observations
+
+Our missing observations are restricted only to the `state_stantard_shortage_level` column.
+
+We will be working with this column in mind but we will be omitting it from our output as it only shows *NA* values. All outputs here are expected to show how much an org, pwsid, supplier is missing and when.
+
+```{r}
+missing_subset <- shortage_df |>
+  filter(if_any(everything(), is.na))  # Keeps rows where any column has NA.
+
+# Hide shortage indicator as we know this is all the shortage NA's.
+missing_subset |>
+  select(-state_standard_shortage_level) |> # Ignore for cleaner output of table.
+  head()
+```
+
+#### Sorting our missing data by supplier name.
+
+```{r}
+# Sort the missing subset by supplier_name, then start_date for better organization
+sorted_missing_subset_by_supplier <- missing_subset |>
+  arrange(supplier_name, start_date, end_date) |>
+  select(-state_standard_shortage_level)
+
+head(sorted_missing_subset_by_supplier, n = 15)
+```
+
+#### Check what suppliers have the most missing data (keep `org_id` and `pwsid`)
+
+```{r}
+freq_missing_supplier <- shortage_df |>
+  filter(is.na(state_standard_shortage_level)) |> # Keep only rows where shortage level is NA
+  group_by(org_id, pwsid, supplier_name) |>
+  summarise(NA_Count = n(), .groups = "drop") |>
+  arrange(desc(NA_Count))  # Sort by most missing
+
+head(freq_missing_supplier, n = 15)
+```
+
+# Showing our sorted supplier data by suppliers with the most months missed
+
+In this chunk we are going to use the `NA_count` from our frequency table and join it to our sorted missing subset and further sort our data to show the orgs with the most water data missing (monthly data).
+
+Our output should show show in descending order all the monthly data values missing for each org with the orgs missing the most data shown first in descending order.
+
+```{r}
+# Left join to bring in NA_Count and then sort by highest NA count
+sorted_missing_subset_by_supplier <- sorted_missing_subset_by_supplier |>
+  left_join(freq_missing_supplier |> select(org_id, pwsid, supplier_name, NA_Count), 
+            by = c("org_id", "pwsid", "supplier_name")) |>
+  arrange(desc(NA_Count), supplier_name, start_date, end_date) |>  # Sort first by NA count, then supplier_name, then dates
+  select(-NA_Count)
+
+# Show first 50 obv so we can see more than 1 supplier as expected from our
+# counts. 
+head(sorted_missing_subset_by_supplier, n = 50)
+```
+
+We can see observations from the following suppliers within our first 50 obv's as expected from our `frequency_missing_supplier` df:
+
+-   city of imperial
+-   city of bakersfield
+-   city of escondido
+
+The rest should be also as expected but we will limit it for demonstration purposes.
+
+## Post Exploration Analysis
+
+So, one major issue that I want to note in my data exploration is that the frequency of a org/pwsid/supplier can range between 12-31 and initally you would assume that there would be a comparison to be made with the missing data, but when we consider the fact that those frequency values were recorded without ignoring NA's it just shows that the data was unaccounted for a reason we don't know. The org could have shutdown, the data could have been skipped omitted, or it could have been a result of mishandling of the original datasets. We don't know.
+
+### So what does this mean?
+
+#### Lets look at the city of imperial as an example.
+
+```{r}
+# Lets look at the total # of observations for the city of imperial.
+shortage_df |>
+  filter(supplier_name == "city of imperial") |>
+  count(supplier_name, org_id, pwsid)
+```
+
+They have the highest reported missing months at 25 months listed as NA with a total of 30 total months accounted for in our data.
+
+#### Lets look at the supplier with the lowest frequency of months reported.
+
+```{r}
+# Find suppliers with exactly 12 reports
+low_reporting_suppliers <- shortage_df |>
+  count(supplier_name, org_id, pwsid, name = "Total_Reports") |>
+  filter(Total_Reports == 12) |>
+  select(org_id, pwsid, supplier_name)  # Keep only these identifiers
+
+# Get all records for those suppliers
+low_reporting_records <- shortage_df |>
+  semi_join(low_reporting_suppliers, by = c("org_id", "pwsid", "supplier_name"))
+
+low_reporting_records
+```
+
+The `Oildale Mutual Water Company` which has the lowest frequency of reported data at 12 months accounted for also has 2 months of NA data.
+
+From this we can infer that there data doesn't account for the same range as some of the other suppliers.
+
+-   What can we do about this?
+-   Do we add spread out the data to add NA observations for the orgs that do have unreported values?
+
+This is something to take note of.

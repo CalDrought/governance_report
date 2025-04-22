@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Takeen Shamloo">
+<meta name="dcterms.date" content="2025-04-21">
+
+<title>Actual Shortage Information</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="actual_shortage_gap_analysis_files/libs/clipboard/clipboard.min.js"></script>
+<script src="actual_shortage_gap_analysis_files/libs/quarto-html/quarto.js"></script>
+<script src="actual_shortage_gap_analysis_files/libs/quarto-html/popper.min.js"></script>
+<script src="actual_shortage_gap_analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="actual_shortage_gap_analysis_files/libs/quarto-html/anchor.min.js"></script>
+<link href="actual_shortage_gap_analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="actual_shortage_gap_analysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="actual_shortage_gap_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="actual_shortage_gap_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="actual_shortage_gap_analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Actual Shortage Information</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Takeen Shamloo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 21, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="data-actual-water-shortage" class="level2">
+<h2 class="anchored" data-anchor-id="data-actual-water-shortage">Data: Actual Water Shortage</h2>
+<section id="description" class="level4">
+<h4 class="anchored" data-anchor-id="description">Description:</h4>
+<p><a href="https://data.cnra.ca.gov/dataset/57b20340-2b03-4c22-bc52-b59047451496/resource/c3832742-5525-442d-b762-59453d500aba/download/actual_water_shortage_level.csv">Link To Data</a></p>
+<p>This table reports the monthly state standard shortage level by urban retail water suppliers, which are generally defined as agencies serving over 3,000 service connections or deliveries 3,000 acre-feet of water annually for municipal purposes. These data are collected by the State Water Resources Control Board through its monthly Conservation Reporting and the data included in this dataset represent a small component of the larger dataset. Information about these reports can be found on the <a href="https://www.waterboards.ca.gov/water_issues/programs/conservation_portal/conservation_reporting.html">Water Conservation Portal</a>, which is no longer active, and the full data (which represents the source data for this dataset) are available on the <a href="https://data.ca.gov/dataset/urws-conservation-supply-demand">California Open Data Portal</a>. Beginning in 2023, the reporting of these data transitioned to the SAFER Clearinghouse.</p>
+<p>Data use limitations: Prior to 2022, shortage levels were not standardized, which makes the data difficult to use. This dataset was filtered to include 2022 onwards where shortage levels are standardized.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-data">Load Data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shortage_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"actual_water_shortage_level.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="issue-1-our-actual-shortage-data-is-limited-to-only-wy-2022-2023-and-half" class="level3">
+<h3 class="anchored" data-anchor-id="issue-1-our-actual-shortage-data-is-limited-to-only-wy-2022-2023-and-half">Issue 1: Our actual shortage data is limited to only WY 2022, 2023, and half</h3>
+<p>of 2024. We are limited 31 months worth of data starting Jan 01, 2022 - July 31, 2024.</p>
+<section id="lets-take-a-look-at-the-dates" class="level4">
+<h4 class="anchored" data-anchor-id="lets-take-a-look-at-the-dates">Lets take a look at the dates</h4>
+<section id="start-dates" class="level5">
+<h5 class="anchored" data-anchor-id="start-dates">Start Dates</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique start_date values</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>all_start_dates <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(start_date) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(start_date)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># all_start_dates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="end-dates" class="level5">
+<h5 class="anchored" data-anchor-id="end-dates">End Dates</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique end_date values</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>all_end_dates <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(end_date) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(end_date)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># all_end_dates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are 31 observations and 31 months between the first/last start and end dates.</p>
+<p>First Start_date: 01/01/2022, Last Start_date: 07/01/2024</p>
+<p>First End_date: 01/31/2022, Last End_date: 07/31/2024</p>
+</section>
+</section>
+</section>
+<section id="solution-1-none.-more-consistent-data-collection." class="level3">
+<h3 class="anchored" data-anchor-id="solution-1-none.-more-consistent-data-collection.">Solution 1: None. More Consistent Data Collection.</h3>
+</section>
+<section id="issue-2-given-our-data-is-qualiatative-and-was-most-recently-standardized" class="level3">
+<h3 class="anchored" data-anchor-id="issue-2-given-our-data-is-qualiatative-and-was-most-recently-standardized">Issue 2: Given our data is qualiatative and was most recently standardized</h3>
+<p>as of Jan 01, 2022. Although we do not directly have access to data before WY 2022. Though due to inconsistencies in adopting the standard we can notice that although we have observations for the first 2 months all of our locations have NA values. Whether that’s due to the districts not reporting it or whether it wasn’t translatable to our new standard is unclear.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count of NA's by start_date.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">na_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(state_standard_shortage_level)),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_orgs =</span> <span class="fu">n_distinct</span>(org_id)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  start_date na_count unique_orgs
+  &lt;chr&gt;         &lt;int&gt;       &lt;int&gt;
+1 2022-01-01      400         400
+2 2022-02-01      393         393</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-2-none.-maintain-the-standard-for-future-data-additions." class="level3">
+<h3 class="anchored" data-anchor-id="solution-2-none.-maintain-the-standard-for-future-data-additions.">Solution 2: None. Maintain the standard for future data additions.</h3>
+</section>
+<section id="issue-3-following-up-with-issue-2.-from-our-data-we-can-also-prcieve-that" class="level3">
+<h3 class="anchored" data-anchor-id="issue-3-following-up-with-issue-2.-from-our-data-we-can-also-prcieve-that">Issue 3: Following up with Issue 2. From our data we can also prcieve that</h3>
+<p>even past the adoption date beginning 2022 we do have a decent amount of <code>NA</code> values within our data. We do not know where these values come from as our range should be between c(0, 6) where 0 is <code>No Shortage</code> and 6 is <code>&gt;50% shortage</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count of NA's by start_date.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">na_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(state_standard_shortage_level)),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_orgs =</span> <span class="fu">n_distinct</span>(org_id)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 29 × 3
+   start_date na_count unique_orgs
+   &lt;chr&gt;         &lt;int&gt;       &lt;int&gt;
+ 1 2022-03-01        1         401
+ 2 2022-04-01        3         401
+ 3 2022-05-01        5         400
+ 4 2022-06-01        4         402
+ 5 2022-07-01        3         397
+ 6 2022-08-01        3         399
+ 7 2022-09-01        1         398
+ 8 2022-10-01        3         391
+ 9 2022-11-01        4         388
+10 2022-12-01        4         392
+# ℹ 19 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-3-none.-requires-better-accountability-when-reporting-and-recording-data." class="level3">
+<h3 class="anchored" data-anchor-id="solution-3-none.-requires-better-accountability-when-reporting-and-recording-data.">Solution 3: None. Requires Better Accountability when reporting and recording data.</h3>
+</section>
+</section>
+<section id="no-issues-with-org_id-or-pwsid" class="level1">
+<h1>No issues with ORG_ID or PWSID</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(org_id) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">unique_pwsid_count =</span> <span class="fu">n_distinct</span>(pwsid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 405 × 2
+   org_id unique_pwsid_count
+    &lt;int&gt;              &lt;int&gt;
+ 1     13                  1
+ 2     23                  1
+ 3     25                  1
+ 4     30                  1
+ 5     55                  1
+ 6     57                  1
+ 7     64                  1
+ 8     66                  1
+ 9     82                  1
+10     87                  1
+# ℹ 395 more rows</code></pre>
+</div>
+</div>
+<section id="data-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="data-exploration">Data Exploration</h3>
+<section id="check-dimensions-column-names" class="level4">
+<h4 class="anchored" data-anchor-id="check-dimensions-column-names">Check Dimensions / Column Names</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimensions of the Data Frame.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number of rows: "</span>, <span class="fu">dim</span>(shortage_df)[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">Number of columns: "</span>, <span class="fu">dim</span>(shortage_df)[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of rows:  12313 
+Number of columns:  6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column names.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">All Columns Names:</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">colnames</span>(shortage_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+All Columns Names:
+ org_id pwsid supplier_name start_date end_date state_standard_shortage_level</code></pre>
+</div>
+</div>
+</section>
+<section id="find-out-number-of-nas-per-column" class="level4">
+<h4 class="anchored" data-anchor-id="find-out-number-of-nas-per-column">Find out number of NA’s per column</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabled number of NA's per column. </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Column =</span> <span class="fu">names</span>(shortage_df), <span class="at">NA_Count =</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(shortage_df)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                     Column NA_Count
+org_id                                               org_id        0
+pwsid                                                 pwsid        0
+supplier_name                                 supplier_name        0
+start_date                                       start_date        0
+end_date                                           end_date        0
+state_standard_shortage_level state_standard_shortage_level     1282</code></pre>
+</div>
+</div>
+</section>
+<section id="find-the-frequency-of-each-org_id" class="level4">
+<h4 class="anchored" data-anchor-id="find-the-frequency-of-each-org_id">Find the frequency of each org_id</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get number of instances of each unique `org_id`.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>freq_orgID <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(org_id, <span class="at">name =</span> <span class="st">"Num_instance_OrgID"</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(freq_orgID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  org_id Num_instance_OrgID
+1     13                 31
+2     23                 30
+3     25                 31
+4     30                 31
+5     55                 31
+6     57                 27</code></pre>
+</div>
+</div>
+<p>Noticing that there is a trend with the frequency of each org id seeing values of 28-31 I’m thinking we might see a max number of observations which might be an insight to their reporting period? Lets find out how high or low these values go.</p>
+</section>
+<section id="find-the-min-max-frequency-numbers-for-org_id" class="level4">
+<h4 class="anchored" data-anchor-id="find-the-min-max-frequency-numbers-for-org_id">Find the min &amp; max frequency numbers for <code>org_id</code></h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grouping our data by org_id and finding min/max frequencies for an org_id.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>minmax_count_orgID <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(org_id, <span class="at">name =</span> <span class="st">"Num_instance_orgID"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">max_num_instance =</span> <span class="fu">max</span>(Num_instance_orgID),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_num_instance =</span> <span class="fu">min</span>(Num_instance_orgID))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Highest Frequency Reported:"</span>, minmax_count_orgID[[<span class="dv">1</span>]], <span class="st">"observations for an org_id."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Highest Frequency Reported: 31 observations for an org_id.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Lowest Frequency Reported:"</span>, minmax_count_orgID[[<span class="dv">2</span>]], <span class="st">"observations for an org_id."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Lowest Frequency Reported: 12 observations for an org_id.</code></pre>
+</div>
+</div>
+<p>The highest shows us that 31 observations which I’m going to assuming follows the trend for the Monthly reporting criteria. A low of 12 we can assume for now means that the data was unreported. It could be important to see what org_id dates are missing as well. For now lets do the same analysis on our PWSID column to see if we have similar findings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get number of instances of each unique `pwsid`</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>freq_pwsID <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pwsid, <span class="at">name =</span> <span class="st">"Num_instance_pwsID"</span>) </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(freq_pwsID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      pwsid Num_instance_pwsID
+1 CA0110001                 30
+2 CA0110003                 31
+3 CA0110005                 29
+4 CA0110006                 31
+5 CA0110008                 31
+6 CA0110009                 31</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>minmax_count_pwsID <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pwsid, <span class="at">name =</span> <span class="st">"Num_instance_pwsID"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">max_num_instance =</span> <span class="fu">max</span>(Num_instance_pwsID),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_num_instance =</span> <span class="fu">min</span>(Num_instance_pwsID))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Max # Instances:"</span>, minmax_count_pwsID[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max # Instances: 31</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Min # Instances:"</span>, minmax_count_pwsID[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Min # Instances: 12</code></pre>
+</div>
+</div>
+<p>Our output results look similar if not the same I’m thinking it would be a good idea to group by <code>org_id</code> and <code>pwsid</code> to see if we have a similarly sized output dataframe.</p>
+</section>
+<section id="groupby-org_id-and-pwsid-and-find-if-frequencies-match." class="level4">
+<h4 class="anchored" data-anchor-id="groupby-org_id-and-pwsid-and-find-if-frequencies-match.">GroupBy <code>org_id</code> and <code>pwsid</code> and find if frequencies match.</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>freq_both <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(org_id, pwsid, <span class="at">name =</span> <span class="st">"Num_instance_both"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(freq_orgID, <span class="at">by =</span> <span class="st">"org_id"</span>) <span class="sc">|&gt;</span> <span class="co"># Use quotes for column name</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(freq_pwsID, <span class="at">by =</span> <span class="st">"pwsid"</span>) <span class="sc">|&gt;</span>  <span class="co"># Use quotes for column name</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Matches_OrgID =</span> Num_instance_both <span class="sc">==</span> Num_instance_OrgID,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Matches_PWSID =</span> Num_instance_both <span class="sc">==</span> Num_instance_pwsID</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(freq_both)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  org_id                                             pwsid Num_instance_both
+1     13                                         CA3610001                31
+2     23                                         CA0110001                30
+3     25                                         CA2710001                31
+4     30                                         CA1910001                31
+5     55 CA0310002,CA0310003,CA0310012,CA0310019,CA0310021                31
+6     57                                         CA2810005                27
+  Num_instance_OrgID Num_instance_pwsID Matches_OrgID Matches_PWSID
+1                 31                 31          TRUE          TRUE
+2                 30                 30          TRUE          TRUE
+3                 31                 31          TRUE          TRUE
+4                 31                 31          TRUE          TRUE
+5                 31                 31          TRUE          TRUE
+6                 27                 27          TRUE          TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="any-frequency-values-that-dont-match" class="level4">
+<h4 class="anchored" data-anchor-id="any-frequency-values-that-dont-match">Any frequency values that don’t match?</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mismatches <span class="ot">&lt;-</span> freq_both <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>Matches_OrgID <span class="sc">|</span> <span class="sc">!</span>Matches_PWSID)  <span class="co"># Keep only FALSE matches</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mismatches)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] org_id             pwsid              Num_instance_both  Num_instance_OrgID
+[5] Num_instance_pwsID Matches_OrgID      Matches_PWSID     
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+</div>
+<p>From our results we can interperet that each unique org_id has a corresponding pwsid or set of pwsid(s) that correspond to them. The <code>org_id</code>’s and <code>pwsid</code>’s frequencies match frequency values and the # of the observations didn’t change compared to the frequency calculations we performed on the individual variables.</p>
+</section>
+</section>
+<section id="missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="missing-data">Missing Data</h3>
+<p>For this sections lets take a look at only our missing data to see what we can infer. Information we would like to see include things such as:</p>
+<ul>
+<li>What suppliers are struggling to produce data?</li>
+</ul>
+<section id="how-many-unique-suppliers-do-we-have" class="level4">
+<h4 class="anchored" data-anchor-id="how-many-unique-suppliers-do-we-have">How many unique suppliers do we have?</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>num_unique_suppliers <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Unique_Suppliers =</span> <span class="fu">n_distinct</span>(supplier_name))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"There are"</span>, num_unique_suppliers<span class="sc">$</span>Unique_Suppliers, <span class="st">"unique suppliers."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>There are 405 unique suppliers.</code></pre>
+</div>
+</div>
+<p>We have 405 unique <code>supplier_name</code>’s. We also have 405 unique <code>org_id</code>’s and <code>pwsid</code>’s. This indicates that we can look to group by the 3.</p>
+</section>
+<section id="subset-of-all-1282-missing-observations" class="level4">
+<h4 class="anchored" data-anchor-id="subset-of-all-1282-missing-observations">Subset of all <em>1,282</em> missing observations</h4>
+<p>Our missing observations are restricted only to the <code>state_stantard_shortage_level</code> column.</p>
+<p>We will be working with this column in mind but we will be omitting it from our output as it only shows <em>NA</em> values. All outputs here are expected to show how much an org, pwsid, supplier is missing and when.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>missing_subset <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_any</span>(<span class="fu">everything</span>(), is.na))  <span class="co"># Keeps rows where any column has NA.</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide shortage indicator as we know this is all the shortage NA's.</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>missing_subset <span class="sc">|&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>state_standard_shortage_level) <span class="sc">|&gt;</span> <span class="co"># Ignore for cleaner output of table.</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  org_id     pwsid                 supplier_name start_date   end_date
+1     13 CA3610001              city of adelanto 2022-02-01 2022-02-28
+2     13 CA3610001              city of adelanto 2022-01-01 2022-01-31
+3     23 CA0110001 alameda county water district 2022-01-01 2022-01-31
+4     25 CA2710001            alco water service 2022-02-01 2022-02-28
+5     25 CA2710001            alco water service 2022-01-01 2022-01-31
+6     30 CA1910001              city of alhambra 2022-02-01 2022-02-28</code></pre>
+</div>
+</div>
+</section>
+<section id="sorting-our-missing-data-by-supplier-name." class="level4">
+<h4 class="anchored" data-anchor-id="sorting-our-missing-data-by-supplier-name.">Sorting our missing data by supplier name.</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the missing subset by supplier_name, then start_date for better organization</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>sorted_missing_subset_by_supplier <span class="ot">&lt;-</span> missing_subset <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(supplier_name, start_date, end_date) <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>state_standard_shortage_level)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sorted_missing_subset_by_supplier, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   org_id                                             pwsid
+1      23                                         CA0110001
+2      25                                         CA2710001
+3      25                                         CA2710001
+4      55 CA0310002,CA0310003,CA0310012,CA0310019,CA0310021
+5      55 CA0310002,CA0310003,CA0310012,CA0310019,CA0310021
+6      87                                         CA3610003
+7      87                                         CA3610003
+8     102                                         CA1510001
+9     102                                         CA1510001
+10    107                                         CA4010002
+11    107                                         CA4010002
+12    117                                         CA1910007
+13    117                                         CA1910007
+14    124                                         CA1010001
+15    124                                         CA1010001
+                        supplier_name start_date   end_date
+1       alameda county water district 2022-01-01 2022-01-31
+2                  alco water service 2022-01-01 2022-01-31
+3                  alco water service 2022-02-01 2022-02-28
+4                 amador water agency 2022-01-01 2022-01-31
+5                 amador water agency 2022-02-01 2022-02-28
+6  apple valley ranchos water company 2022-01-01 2022-01-31
+7  apple valley ranchos water company 2022-02-01 2022-02-28
+8    arvin community service district 2022-01-01 2022-01-31
+9    arvin community service district 2022-02-01 2022-02-28
+10    atascadero mutual water company 2022-01-01 2022-01-31
+11    atascadero mutual water company 2022-02-01 2022-02-28
+12              azusa light and water 2022-01-01 2022-01-31
+13              azusa light and water 2022-02-01 2022-02-28
+14               bakman water company 2022-01-01 2022-01-31
+15               bakman water company 2022-02-01 2022-02-28</code></pre>
+</div>
+</div>
+</section>
+<section id="check-what-suppliers-have-the-most-missing-data-keep-org_id-and-pwsid" class="level4">
+<h4 class="anchored" data-anchor-id="check-what-suppliers-have-the-most-missing-data-keep-org_id-and-pwsid">Check what suppliers have the most missing data (keep <code>org_id</code> and <code>pwsid</code>)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>freq_missing_supplier <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(state_standard_shortage_level)) <span class="sc">|&gt;</span> <span class="co"># Keep only rows where shortage level is NA</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(org_id, pwsid, supplier_name) <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NA_Count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NA_Count))  <span class="co"># Sort by most missing</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(freq_missing_supplier, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 4
+   org_id pwsid                         supplier_name                   NA_Count
+    &lt;int&gt; &lt;chr&gt;                         &lt;chr&gt;                              &lt;int&gt;
+ 1   1225 CA1310006                     city of imperial                      25
+ 2    123 CA1510031                     city of bakersfield                   21
+ 3    851 CA3710006                     city of escondido                     21
+ 4   1444 CA2410004                     city of livingston                    21
+ 5   2163 CA1910143                     city of san fernando                  21
+ 6   2451 CA1510020                     city of tehachapi                     21
+ 7    378 CA1510032                     california city                       20
+ 8    972 CA3410011                     city of galt                          20
+ 9    787 CA4110024                     city of east palo alto                19
+10   1333 CA1910062                     city of la verne                      19
+11   1660 CA4010011                     city of morro bay                     18
+12    739 CA0710009                     discovery bay community servic…       17
+13   1157 CA3310016                     city of hemet                         17
+14   2154 CA3610121                     san bernardino county service …       17
+15   2401 CA1910046,CA1910200,CA1910205 suburban water systems - san j…       17</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="showing-our-sorted-supplier-data-by-suppliers-with-the-most-months-missed" class="level1">
+<h1>Showing our sorted supplier data by suppliers with the most months missed</h1>
+<p>In this chunk we are going to use the <code>NA_count</code> from our frequency table and join it to our sorted missing subset and further sort our data to show the orgs with the most water data missing (monthly data).</p>
+<p>Our output should show show in descending order all the monthly data values missing for each org with the orgs missing the most data shown first in descending order.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left join to bring in NA_Count and then sort by highest NA count</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sorted_missing_subset_by_supplier <span class="ot">&lt;-</span> sorted_missing_subset_by_supplier <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(freq_missing_supplier <span class="sc">|&gt;</span> <span class="fu">select</span>(org_id, pwsid, supplier_name, NA_Count), </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"org_id"</span>, <span class="st">"pwsid"</span>, <span class="st">"supplier_name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NA_Count), supplier_name, start_date, end_date) <span class="sc">|&gt;</span>  <span class="co"># Sort first by NA count, then supplier_name, then dates</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>NA_Count)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first 50 obv so we can see more than 1 supplier as expected from our</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># counts. </span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sorted_missing_subset_by_supplier, <span class="at">n =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   org_id     pwsid       supplier_name start_date   end_date
+1    1225 CA1310006    city of imperial 2022-01-01 2022-01-31
+2    1225 CA1310006    city of imperial 2022-02-01 2022-02-28
+3    1225 CA1310006    city of imperial 2022-08-01 2022-08-31
+4    1225 CA1310006    city of imperial 2022-09-01 2022-09-30
+5    1225 CA1310006    city of imperial 2022-11-01 2022-11-30
+6    1225 CA1310006    city of imperial 2022-12-01 2022-12-31
+7    1225 CA1310006    city of imperial 2023-01-01 2023-01-31
+8    1225 CA1310006    city of imperial 2023-02-01 2023-02-28
+9    1225 CA1310006    city of imperial 2023-03-01 2023-03-31
+10   1225 CA1310006    city of imperial 2023-04-01 2023-04-30
+11   1225 CA1310006    city of imperial 2023-05-01 2023-05-31
+12   1225 CA1310006    city of imperial 2023-06-01 2023-06-30
+13   1225 CA1310006    city of imperial 2023-07-01 2023-07-31
+14   1225 CA1310006    city of imperial 2023-08-01 2023-08-31
+15   1225 CA1310006    city of imperial 2023-09-01 2023-09-30
+16   1225 CA1310006    city of imperial 2023-10-01 2023-10-31
+17   1225 CA1310006    city of imperial 2023-11-01 2023-11-30
+18   1225 CA1310006    city of imperial 2023-12-01 2023-12-31
+19   1225 CA1310006    city of imperial 2024-01-01 2024-01-31
+20   1225 CA1310006    city of imperial 2024-02-01 2024-02-29
+21   1225 CA1310006    city of imperial 2024-03-01 2024-03-31
+22   1225 CA1310006    city of imperial 2024-04-01 2024-04-30
+23   1225 CA1310006    city of imperial 2024-05-01 2024-05-31
+24   1225 CA1310006    city of imperial 2024-06-01 2024-06-30
+25   1225 CA1310006    city of imperial 2024-07-01 2024-07-31
+26    123 CA1510031 city of bakersfield 2022-01-01 2022-01-31
+27    123 CA1510031 city of bakersfield 2022-02-01 2022-02-28
+28    123 CA1510031 city of bakersfield 2023-01-01 2023-01-31
+29    123 CA1510031 city of bakersfield 2023-02-01 2023-02-28
+30    123 CA1510031 city of bakersfield 2023-03-01 2023-03-31
+31    123 CA1510031 city of bakersfield 2023-04-01 2023-04-30
+32    123 CA1510031 city of bakersfield 2023-05-01 2023-05-31
+33    123 CA1510031 city of bakersfield 2023-06-01 2023-06-30
+34    123 CA1510031 city of bakersfield 2023-07-01 2023-07-31
+35    123 CA1510031 city of bakersfield 2023-08-01 2023-08-31
+36    123 CA1510031 city of bakersfield 2023-09-01 2023-09-30
+37    123 CA1510031 city of bakersfield 2023-10-01 2023-10-31
+38    123 CA1510031 city of bakersfield 2023-11-01 2023-11-30
+39    123 CA1510031 city of bakersfield 2023-12-01 2023-12-31
+40    123 CA1510031 city of bakersfield 2024-01-01 2024-01-31
+41    123 CA1510031 city of bakersfield 2024-02-01 2024-02-29
+42    123 CA1510031 city of bakersfield 2024-03-01 2024-03-31
+43    123 CA1510031 city of bakersfield 2024-04-01 2024-04-30
+44    123 CA1510031 city of bakersfield 2024-05-01 2024-05-31
+45    123 CA1510031 city of bakersfield 2024-06-01 2024-06-30
+46    123 CA1510031 city of bakersfield 2024-07-01 2024-07-31
+47    851 CA3710006   city of escondido 2022-01-01 2022-01-31
+48    851 CA3710006   city of escondido 2022-02-01 2022-02-28
+49    851 CA3710006   city of escondido 2023-01-01 2023-01-31
+50    851 CA3710006   city of escondido 2023-02-01 2023-02-28</code></pre>
+</div>
+</div>
+<p>We can see observations from the following suppliers within our first 50 obv’s as expected from our <code>frequency_missing_supplier</code> df:</p>
+<ul>
+<li>city of imperial</li>
+<li>city of bakersfield</li>
+<li>city of escondido</li>
+</ul>
+<p>The rest should be also as expected but we will limit it for demonstration purposes.</p>
+<section id="post-exploration-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="post-exploration-analysis">Post Exploration Analysis</h2>
+<p>So, one major issue that I want to note in my data exploration is that the frequency of a org/pwsid/supplier can range between 12-31 and initally you would assume that there would be a comparison to be made with the missing data, but when we consider the fact that those frequency values were recorded without ignoring NA’s it just shows that the data was unaccounted for a reason we don’t know. The org could have shutdown, the data could have been skipped omitted, or it could have been a result of mishandling of the original datasets. We don’t know.</p>
+<section id="so-what-does-this-mean" class="level3">
+<h3 class="anchored" data-anchor-id="so-what-does-this-mean">So what does this mean?</h3>
+<section id="lets-look-at-the-city-of-imperial-as-an-example." class="level4">
+<h4 class="anchored" data-anchor-id="lets-look-at-the-city-of-imperial-as-an-example.">Lets look at the city of imperial as an example.</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lets look at the total # of observations for the city of imperial.</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(supplier_name <span class="sc">==</span> <span class="st">"city of imperial"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(supplier_name, org_id, pwsid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     supplier_name org_id     pwsid  n
+1 city of imperial   1225 CA1310006 30</code></pre>
+</div>
+</div>
+<p>They have the highest reported missing months at 25 months listed as NA with a total of 30 total months accounted for in our data.</p>
+</section>
+<section id="lets-look-at-the-supplier-with-the-lowest-frequency-of-months-reported." class="level4">
+<h4 class="anchored" data-anchor-id="lets-look-at-the-supplier-with-the-lowest-frequency-of-months-reported.">Lets look at the supplier with the lowest frequency of months reported.</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find suppliers with exactly 12 reports</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>low_reporting_suppliers <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(supplier_name, org_id, pwsid, <span class="at">name =</span> <span class="st">"Total_Reports"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Total_Reports <span class="sc">==</span> <span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(org_id, pwsid, supplier_name)  <span class="co"># Keep only these identifiers</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all records for those suppliers</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>low_reporting_records <span class="ot">&lt;-</span> shortage_df <span class="sc">|&gt;</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(low_reporting_suppliers, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"org_id"</span>, <span class="st">"pwsid"</span>, <span class="st">"supplier_name"</span>))</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>low_reporting_records</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   org_id     pwsid                supplier_name start_date   end_date
+1    1782 CA1510015 oildale mutual water company 2022-12-01 2022-12-31
+2    1782 CA1510015 oildale mutual water company 2022-11-01 2022-11-30
+3    1782 CA1510015 oildale mutual water company 2022-10-01 2022-10-31
+4    1782 CA1510015 oildale mutual water company 2022-09-01 2022-09-30
+5    1782 CA1510015 oildale mutual water company 2022-08-01 2022-08-31
+6    1782 CA1510015 oildale mutual water company 2022-07-01 2022-07-31
+7    1782 CA1510015 oildale mutual water company 2022-06-01 2022-06-30
+8    1782 CA1510015 oildale mutual water company 2022-05-01 2022-05-31
+9    1782 CA1510015 oildale mutual water company 2022-04-01 2022-04-30
+10   1782 CA1510015 oildale mutual water company 2022-03-01 2022-03-31
+11   1782 CA1510015 oildale mutual water company 2022-02-01 2022-02-28
+12   1782 CA1510015 oildale mutual water company 2022-01-01 2022-01-31
+   state_standard_shortage_level
+1                              2
+2                              2
+3                              2
+4                              2
+5                              2
+6                              2
+7                              2
+8                              2
+9                              0
+10                             0
+11                            NA
+12                            NA</code></pre>
+</div>
+</div>
+<p>The <code>Oildale Mutual Water Company</code> which has the lowest frequency of reported data at 12 months accounted for also has 2 months of NA data.</p>
+<p>From this we can infer that there data doesn’t account for the same range as some of the other suppliers.</p>
+<ul>
+<li>What can we do about this?</li>
+<li>Do we add spread out the data to add NA observations for the orgs that do have unreported values?</li>
+</ul>
+<p>This is something to take note of.</p>
+</section>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
