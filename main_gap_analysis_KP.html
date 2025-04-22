@@ -269,34 +269,34 @@ Suppliers report the numbers of their estimated total annual demands based on th
 <ol type="1">
 <li><p><strong>Missing Values Assessment</strong> – When calculating the number of missing values (NAs), it’s important to consider the reporting frequency. For example, in the case of annual reporting, only one data point is expected per year, and the remaining 11 months will naturally contain NAs. These should not be counted as missing values. The same logic applies to bi-annual reporting, where only two data points are expected per year.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg<span class="ot">&lt;-</span>monthly_water_shortage_outlook<span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(supplier_name<span class="sc">==</span><span class="st">"alhambra  city of"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Missing Values Example"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Filtered for: Alhambra City of"</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(annual_reporting_eg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;div id="cwiswuzyuw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
-  &lt;style&gt;#cwiswuzyuw table {
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg <span class="ot">&lt;-</span> monthly_water_shortage_outlook <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(<span class="st">"org_id"</span>, <span class="st">"supplier_name"</span>, <span class="st">"reporting_interval"</span>, <span class="st">"shortage_surplus_acre_feet"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(supplier_name <span class="sc">==</span> <span class="st">"City of Alhambra"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Annual Reporting Example"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Filtered for: Alhambra City of"</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="oiunxkbuhp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oiunxkbuhp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cwiswuzyuw thead, #cwiswuzyuw tbody, #cwiswuzyuw tfoot, #cwiswuzyuw tr, #cwiswuzyuw td, #cwiswuzyuw th {
+#oiunxkbuhp thead, #oiunxkbuhp tbody, #oiunxkbuhp tfoot, #oiunxkbuhp tr, #oiunxkbuhp td, #oiunxkbuhp th {
   border-style: none;
 }
 
-#cwiswuzyuw p {
+#oiunxkbuhp p {
   margin: 0;
   padding: 0;
 }
 
-#cwiswuzyuw .gt_table {
+#oiunxkbuhp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -322,12 +322,12 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-left-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_caption {
+#oiunxkbuhp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cwiswuzyuw .gt_title {
+#oiunxkbuhp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -339,7 +339,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-bottom-width: 0;
 }
 
-#cwiswuzyuw .gt_subtitle {
+#oiunxkbuhp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -351,7 +351,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-top-width: 0;
 }
 
-#cwiswuzyuw .gt_heading {
+#oiunxkbuhp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -363,13 +363,13 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-right-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_bottom_border {
+#oiunxkbuhp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_col_headings {
+#oiunxkbuhp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -384,7 +384,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-right-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_col_heading {
+#oiunxkbuhp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -404,7 +404,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   overflow-x: hidden;
 }
 
-#cwiswuzyuw .gt_column_spanner_outer {
+#oiunxkbuhp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -416,15 +416,15 @@ Suppliers report the numbers of their estimated total annual demands based on th
   padding-right: 4px;
 }
 
-#cwiswuzyuw .gt_column_spanner_outer:first-child {
+#oiunxkbuhp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cwiswuzyuw .gt_column_spanner_outer:last-child {
+#oiunxkbuhp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cwiswuzyuw .gt_column_spanner {
+#oiunxkbuhp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -436,11 +436,11 @@ Suppliers report the numbers of their estimated total annual demands based on th
   width: 100%;
 }
 
-#cwiswuzyuw .gt_spanner_row {
+#oiunxkbuhp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cwiswuzyuw .gt_group_heading {
+#oiunxkbuhp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -466,7 +466,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   text-align: left;
 }
 
-#cwiswuzyuw .gt_empty_group_heading {
+#oiunxkbuhp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -481,15 +481,15 @@ Suppliers report the numbers of their estimated total annual demands based on th
   vertical-align: middle;
 }
 
-#cwiswuzyuw .gt_from_md &gt; :first-child {
+#oiunxkbuhp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cwiswuzyuw .gt_from_md &gt; :last-child {
+#oiunxkbuhp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cwiswuzyuw .gt_row {
+#oiunxkbuhp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -508,7 +508,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   overflow-x: hidden;
 }
 
-#cwiswuzyuw .gt_stub {
+#oiunxkbuhp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,7 +521,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   padding-right: 5px;
 }
 
-#cwiswuzyuw .gt_stub_row_group {
+#oiunxkbuhp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -535,15 +535,15 @@ Suppliers report the numbers of their estimated total annual demands based on th
   vertical-align: top;
 }
 
-#cwiswuzyuw .gt_row_group_first td {
+#oiunxkbuhp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cwiswuzyuw .gt_row_group_first th {
+#oiunxkbuhp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cwiswuzyuw .gt_summary_row {
+#oiunxkbuhp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -553,16 +553,16 @@ Suppliers report the numbers of their estimated total annual demands based on th
   padding-right: 5px;
 }
 
-#cwiswuzyuw .gt_first_summary_row {
+#oiunxkbuhp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_first_summary_row.thick {
+#oiunxkbuhp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cwiswuzyuw .gt_last_summary_row {
+#oiunxkbuhp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -572,7 +572,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-bottom-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_grand_summary_row {
+#oiunxkbuhp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -582,7 +582,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   padding-right: 5px;
 }
 
-#cwiswuzyuw .gt_first_grand_summary_row {
+#oiunxkbuhp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -592,7 +592,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-top-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_last_grand_summary_row_top {
+#oiunxkbuhp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -602,11 +602,11 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-bottom-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_striped {
+#oiunxkbuhp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cwiswuzyuw .gt_table_body {
+#oiunxkbuhp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -615,7 +615,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-bottom-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_footnotes {
+#oiunxkbuhp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -629,7 +629,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-right-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_footnote {
+#oiunxkbuhp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -638,7 +638,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   padding-right: 5px;
 }
 
-#cwiswuzyuw .gt_sourcenotes {
+#oiunxkbuhp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -652,7 +652,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
   border-right-color: #D3D3D3;
 }
 
-#cwiswuzyuw .gt_sourcenote {
+#oiunxkbuhp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -660,610 +660,119 @@ Suppliers report the numbers of their estimated total annual demands based on th
   padding-right: 5px;
 }
 
-#cwiswuzyuw .gt_left {
+#oiunxkbuhp .gt_left {
   text-align: left;
 }
 
-#cwiswuzyuw .gt_center {
+#oiunxkbuhp .gt_center {
   text-align: center;
 }
 
-#cwiswuzyuw .gt_right {
+#oiunxkbuhp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cwiswuzyuw .gt_font_normal {
+#oiunxkbuhp .gt_font_normal {
   font-weight: normal;
 }
 
-#cwiswuzyuw .gt_font_bold {
+#oiunxkbuhp .gt_font_bold {
   font-weight: bold;
 }
 
-#cwiswuzyuw .gt_font_italic {
+#oiunxkbuhp .gt_font_italic {
   font-style: italic;
 }
 
-#cwiswuzyuw .gt_super {
+#oiunxkbuhp .gt_super {
   font-size: 65%;
 }
 
-#cwiswuzyuw .gt_footnote_marks {
+#oiunxkbuhp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cwiswuzyuw .gt_asterisk {
+#oiunxkbuhp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cwiswuzyuw .gt_indent_1 {
+#oiunxkbuhp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cwiswuzyuw .gt_indent_2 {
+#oiunxkbuhp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cwiswuzyuw .gt_indent_3 {
+#oiunxkbuhp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cwiswuzyuw .gt_indent_4 {
+#oiunxkbuhp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cwiswuzyuw .gt_indent_5 {
+#oiunxkbuhp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cwiswuzyuw .katex-display {
+#oiunxkbuhp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cwiswuzyuw div.Reactable &gt; div.rt-table &gt; div.rt-thead &gt; div.rt-tr.rt-tr-group-header &gt; div.rt-th-group:after {
+#oiunxkbuhp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
-&lt;/style&gt;
-  &lt;table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"&gt;
-  &lt;thead&gt;
-    &lt;tr class="gt_heading"&gt;
-      &lt;td colspan="18" class="gt_heading gt_title gt_font_normal" style&gt;Missing Values Example&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr class="gt_heading"&gt;
-      &lt;td colspan="18" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style&gt;Filtered for: Alhambra City of&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr class="gt_col_headings"&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="org_id"&gt;org_id&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="pwsid"&gt;pwsid&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="is_multiple_pwsid"&gt;is_multiple_pwsid&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="supplier_name"&gt;supplier_name&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="supplier_type"&gt;supplier_type&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="reporting_interval"&gt;reporting_interval&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="reporting_start_date"&gt;reporting_start_date&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="reporting_end_date"&gt;reporting_end_date&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="forecast_start_date"&gt;forecast_start_date&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="forecast_end_date"&gt;forecast_end_date&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="forecast_month"&gt;forecast_month&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="is_annual"&gt;is_annual&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="is_wscp_action"&gt;is_wscp_action&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="shortage_surplus_acre_feet"&gt;shortage_surplus_acre_feet&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="shortage_surplus_percent"&gt;shortage_surplus_percent&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="state_standard_shortage_level"&gt;state_standard_shortage_level&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="benefit_demand_reduction_acre_feet"&gt;benefit_demand_reduction_acre_feet&lt;/th&gt;
-      &lt;th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="benefit_supply_augmentation_acre_feet"&gt;benefit_supply_augmentation_acre_feet&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody class="gt_table_body"&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-07-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;7&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-08-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-08-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;8&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-09-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-09-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;9&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-10-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-10-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;10&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-11-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-11-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;11&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-12-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-12-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;12&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-01-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-01-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;1&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-02-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-02-28&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;2&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-03-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-03-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;3&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-04-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-04-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;4&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-05-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-05-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;5&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-06-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;6&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;1174&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;13.47876&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;0&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-07-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;7&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-08-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-08-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;8&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-09-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-09-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;9&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-10-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-10-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;10&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-11-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-11-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;11&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-12-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2024-12-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;12&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-01-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-01-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;1&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-02-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-02-28&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;2&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-03-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-03-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;3&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-04-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-04-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;4&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-05-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-05-31&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;5&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2025-06-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;6&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;NA&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td headers="org_id" class="gt_row gt_right"&gt;30&lt;/td&gt;
-&lt;td headers="pwsid" class="gt_row gt_left"&gt;CA1910001&lt;/td&gt;
-&lt;td headers="is_multiple_pwsid" class="gt_row gt_center"&gt;FALSE&lt;/td&gt;
-&lt;td headers="supplier_name" class="gt_row gt_left"&gt;alhambra  city of&lt;/td&gt;
-&lt;td headers="supplier_type" class="gt_row gt_left"&gt;retail&lt;/td&gt;
-&lt;td headers="reporting_interval" class="gt_row gt_left"&gt;annually (1 data point per year)&lt;/td&gt;
-&lt;td headers="reporting_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="reporting_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_start_date" class="gt_row gt_right"&gt;2024-07-01&lt;/td&gt;
-&lt;td headers="forecast_end_date" class="gt_row gt_right"&gt;2025-06-30&lt;/td&gt;
-&lt;td headers="forecast_month" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="is_annual" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="is_wscp_action" class="gt_row gt_center"&gt;TRUE&lt;/td&gt;
-&lt;td headers="shortage_surplus_acre_feet" class="gt_row gt_right"&gt;1174&lt;/td&gt;
-&lt;td headers="shortage_surplus_percent" class="gt_row gt_right"&gt;13.00000&lt;/td&gt;
-&lt;td headers="state_standard_shortage_level" class="gt_row gt_right"&gt;NA&lt;/td&gt;
-&lt;td headers="benefit_demand_reduction_acre_feet" class="gt_row gt_right"&gt;0&lt;/td&gt;
-&lt;td headers="benefit_supply_augmentation_acre_feet" class="gt_row gt_right"&gt;0&lt;/td&gt;&lt;/tr&gt;
-  &lt;/tbody&gt;
+</style>
 
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="4" class="gt_heading gt_title gt_font_normal">Annual Reporting Example</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Filtered for: Alhambra City of</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="org_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">org_id</th>
+<th id="supplier_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">supplier_name</th>
+<th id="reporting_interval" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">reporting_interval</th>
+<th id="shortage_surplus_acre_feet" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">shortage_surplus_acre_feet</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+</tbody>
+</table>
 
-&lt;/table&gt;
-&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 4
+# ℹ 4 variables: org_id &lt;dbl&gt;, supplier_name &lt;chr&gt;, reporting_interval &lt;chr&gt;,
+#   shortage_surplus_acre_feet &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p><img src="images/clipboard-3092360758.png" class="img-fluid"></p>
 <p>Solution 1 (refer to appendix for code)</p>
 <p>Use the <code>dropna()</code> function specifically on the dataset subset corresponding to the expected reporting frequency (e.g., annual or bi-annual) <em>before</em> calculating the total number of NAs. This ensures that structurally expected NAs are not incorrectly flagged as data issues.</p></li>
-<li><p>Issue 2</p></li>
-<li><p>Solution 2 (refer to appendix for code)</p></li>
-<li><p>Gap Across Datasets</p>
-<ol type="1">
-<li><p>Across all four datasets</p>
-<ol type="1">
-<li><p>Issue 1</p></li>
-<li><p>Solution 1 (refer to appendix for code)</p>
-<ol type="1">
-<li><p>Temporary (how we are fixing it) solution</p></li>
-<li><p>Ideal (our suggestions for better governance) solution</p></li>
-</ol></li>
-<li><p>Issue 2</p></li>
-<li><p>Solution 2 (refer to appendix for code)</p></li>
-</ol></li>
-<li><p>Dataset 1 across dataset 2 only</p>
-<ol type="1">
-<li><p>Issue 1</p></li>
-<li><p>Solution 1 (refer to appendix for code)</p>
-<ol type="1">
-<li><p>Temporary (how we are fixing it) solution</p></li>
-<li><p>Ideal (our suggestions for better governance) solution</p></li>
-</ol></li>
-<li><p>Issue 2</p></li>
-<li><p>Solution 2 (refer to appendix for code)</p></li>
-</ol></li>
-</ol></li>
+<li><p><strong>Standardize Naming</strong>:<br>
+</p>
+<p><code>supplier_name</code> could be normalized or matched against a unique registry to reduce duplicates or misspellings.</p>
+<p>Solution 2</p>
+<p>Add to the reporting form the list of water districts where user can select from</p></li>
+<li><p><strong>Column descriptions</strong>:<br>
+</p>
+<p>Consider including a data dictionary for external users—some field names are intuitive (<code>shortage_surplus_percent</code>), others less so (<code>is_wscp_action</code>).</p></li>
+<li><p><strong>Add Units</strong>:<br>
+</p>
+<p>While most fields likely use acre-feet and percentages, having units explicitly in column names or metadata improves clarity (e.g., <code>shortage_surplus_percent (%)</code>).</p></li>
+<li></li>
 </ol>
 </section>
 </section>
