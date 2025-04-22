@@ -52,6 +52,7 @@ sum(is.na(historical_production_delivery))
 negative_quantity_historical <- historical_production_delivery |> 
   filter(quantity_acre_feet < 0)
 
+
 ```
 
 ## Monthly Water Shortage Outlook
