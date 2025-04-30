@@ -1,9 +1,11 @@
 # Gap Analysis of Datasets and Usability of Urban Drought Water Data
 #### This repository was created for the Data for Drought Resilience capstone project 
 
-Authors include: Tom Gibbens-Matsuyama, Emma Bea Mitchell, Karol Paya, Takeen Shamloo
-Advisor: Dr. Naomi Tague
-Client: California Water Data Consortium
+**Authors include:** Tom Gibbens-Matsuyama, Emma Bea Mitchell, Karol Paya, Takeen Shamloo
+
+**Advisor:** Dr. Naomi Tague
+
+**Client:** California Water Data Consortium
 
 ## Description:
 
