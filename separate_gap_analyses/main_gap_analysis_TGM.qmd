@@ -1,0 +1,134 @@
+---
+title: "Gap Analysis"
+author: "Tom Gibbens-Matsuyama"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+### Gap Analysis
+
+### California Natural Resources Agency Website
+
+## Five Year Shortage
+
+#### Description
+
+This table provides anticipated annual potable water levels (both surplus and shortage) with shortage actions and without shortage actions for five years based on the five driest consecutive years on record. The Urban Water Management Plans (UWMP) reports this data. All data reported through the UWMP are currently available on the WUE portal and the California Natural Resources Open Data Portal. The most recent UWMP guidance is available here. See 7-20 through 7-34 for information about the data elements contained in the five_year_outlook table.
+
+The most important metrics for this dataframe are as follows: `water_use_acre_feet`, `water_supplies_acre_feet`, `benefit_supply_augmentation_acre_feet`, and `benefit_demand_reduction_acre_feet`. These variables represent, for a given year, total water use, total water supply, total supply augmentation (buying from another water district), and total demand reduction (policies in place to reduce water use) for specific water districts. As explained above, this dataset has self reported metrics from each local water district based on their five driest consecutive years on record.
+
+Data use limitations: Similar to the monthly_water_shortage_outlook data, these data also reflect forecasted values rather than actual values. These data are expected to change as conditions change.
+
+### Load libraries
+
+```{r}
+library(tidyverse)
+library(here)
+library(testthat)
+```
+
+### Load data
+
+```{r}
+five_year_shortage <- read_csv(here("data", "five_year_water_shortage_outlook.csv"))
+```
+
+### Issue 1
+
+When viewing the dataframe, one of the first things one may notice is that there are a lot of missing values for the `benefit_supply_augmentation_acre_feet` and `benefit_demand_reduction_acre_feet` columns. That being said, if `water_use_acre_feet` is less than or equal to `water_supplies_acre_feet` then it is not necessary to reduce or augment water, meaning the people who self reported this data did not enter anything for the columns, resulting in an `NA` value. However, let's check to see if there are any data discrepancies where this does not hold true: where values for `supply_augmentation` and `demand_reduction` should be present, but are not.
+
+```{r}
+# Filter five year data 
+five_use_greater_supply <- five_year_shortage %>% 
+  
+  # Filter to where Use is greater than Supply
+  filter(water_use_acre_feet > water_supplies_acre_feet,
+         
+         # Now filter for NAs in both augmentation & reduction columns
+         is.na(benefit_supply_augmentation_acre_feet) &
+           is.na(benefit_demand_reduction_acre_feet))
+```
+
+This filtered dataframe shows some discrepancies within the original data. The new dataframe is very small (12 observations), which is a good thing. There are no real data science solutions to fix this. As this is self reported data, the solution should be fixated on the source (specific water district).
+
+### Issue 2
+
+As mentioned above, there are four metrics that we are interested in for this dataset. These four variables combined make up how much water a water district has available and is using. In many such cases the total water use is less than or equal to the total water supply. This indicates that a water district has a surplus of water. However, in the other case, where total water use is greater than total water supply, it must mean that the water district is either augmenting their water supply or reducing their water consumption. Thus, total water use should equal total water supply + total benefit augmentation + total demand reduction.
+
+To find the rows where this doesn't hold true, let's assume that `NA` values for `supply_augmentation` and `demand_reduction` are 0s. Let's use this logic to find water districts that have misreported data.
+
+```{r}
+# Replacing NAs with 0s, assuming this as true 
+five_year_replace_na <- five_year_shortage %>% 
+  
+  # Mutate existing columns and replace NAs with 0s
+  mutate(benefit_supply_augmentation_acre_feet = 
+           replace_na(benefit_supply_augmentation_acre_feet, 0),
+         benefit_demand_reduction_acre_feet = 
+           replace_na(benefit_demand_reduction_acre_feet, 0)) 
+
+# Creating a function that calculates supply + demand red + supply aug when Use > Supply
+calculate_benefit <- function(df) {
+  five_year_replace_na %>% 
+    
+    # Create new columns
+    mutate(total_benefit = ifelse(
+      
+      # Use ifelse statement for when use > supply 
+      water_use_acre_feet > water_supplies_acre_feet,
+      
+      # If true, then do the following, If false, assign a 0 
+      water_supplies_acre_feet + benefit_demand_reduction_acre_feet + benefit_supply_augmentation_acre_feet, 0
+    ))
+}
+
+# Use the function to reassign the df 
+five_year_replace_na <- calculate_benefit(five_year_replace_na)
+
+# Let's view the data where total_benefit does not equal total use
+five_year_na_filtered <- five_year_replace_na %>% 
+  filter(total_benefit != 0,
+         water_use_acre_feet != total_benefit)
+```
+
+From this output, we can see the local water districts that have areas of error. Similar to the first issue, there are no proper data science solutions to fix this problem, as it stems for the initial self-reporting from water districts.
+
+### Issue 3
+
+One smaller issue unrelated to the integrity of the data is the output in the `supplier_name` column. The outputs are a bit messy and need to be tampered with a little for effective function plot and table output
+
+```{r}
+five_year_shortage_name <- five_year_shortage %>% 
+  
+  # Changing position of city of to be behind the city name
+  # ([a-zA-Z\\]+) selects any sequence before city of
+  # city of \\1 rearranges text so "city of" comes first
+  mutate(supplier_name = str_replace(supplier_name, "([a-zA-Z\\s]+) city of", "city of \\1")) %>% 
+  mutate(supplier_name = str_to_title(supplier_name))
+  
+  
+```
+
+### Data Check 1
+
+The following is a method to check that each unique water district has 5 represented drought years.
+
+```{r}
+five_year_data_check <- five_year_shortage %>% 
+  
+  # Group by each org ID
+  group_by(org_id) %>% 
+  
+  # Count each org IDs observations 
+  tally()
+
+test_that("Each org_id should hhave exactly 5 observations", {
+  
+  # Check if any org_id does not have exactly 5 observations
+  expect_true(all(five_year_data_check$n ==5),
+              info = "One or more org_ids do not have exactly 5 observations")
+})
+
+```

@@ -1,0 +1,40 @@
+---
+title: "desired_data_gap_analysis"
+format: html
+---
+
+## Introduction
+
+This document is here to provide recommendations for datasets to be included in the portal located on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessibility and usability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide recommendations of additional data that would answer questions critical to water managers and other stakeholders. These recommendations will improve the usability of the portal by including more data to meet user needs. 
+
+## State Level Questions
+
+### Question 1
+
+#### Solution 1
+
+### Question 2
+
+#### Solution 2
+
+
+## Local Level Questions
+
+### Question 1
+
+#### Solution 1
+
+### Question 2
+
+#### Solution 2
+
+
+## State and Local Level Questions
+
+### Question 1
+
+#### Solution 1
+
+### Question 2
+
+#### Solution 2
