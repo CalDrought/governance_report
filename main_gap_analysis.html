@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tom Gibbens-Matsuyama, Emma Bea Mitchell, Karol Paya, Takeen Shamloo">
+<meta name="dcterms.date" content="2025-05-30">
 
 <title>Main Gap Analysis</title>
 <style>
@@ -20,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -47,30 +82,61 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#within-datasets" id="toc-within-datasets" class="nav-link" data-scroll-target="#within-datasets">Within Datasets</a>
+  <ul class="collapse">
   <li><a href="#actual-water-shortage-level" id="toc-actual-water-shortage-level" class="nav-link" data-scroll-target="#actual-water-shortage-level">Actual Water Shortage Level</a>
   <ul class="collapse">
-  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">Dataset Description</a></li>
+  <li><a href="#issue-1-date-limitation" id="toc-issue-1-date-limitation" class="nav-link" data-scroll-target="#issue-1-date-limitation">Issue 1: Date Limitation</a></li>
+  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution 1</a></li>
+  <li><a href="#issue-2-given-our-data-is-qualitative-and-was-most-recently-standardized" id="toc-issue-2-given-our-data-is-qualitative-and-was-most-recently-standardized" class="nav-link" data-scroll-target="#issue-2-given-our-data-is-qualitative-and-was-most-recently-standardized">Issue 2: Given our data is qualitative and was most recently standardized</a></li>
+  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2">Solution 2</a></li>
   </ul></li>
   <li><a href="#five-year-water-shortage-outlook" id="toc-five-year-water-shortage-outlook" class="nav-link" data-scroll-target="#five-year-water-shortage-outlook">Five Year Water Shortage Outlook</a>
   <ul class="collapse">
-  <li><a href="#dataset-description-1" id="toc-dataset-description-1" class="nav-link" data-scroll-target="#dataset-description-1">Dataset Description</a></li>
+  <li><a href="#issue-1-total-water-use-is-less-to-the-total-water-supply" id="toc-issue-1-total-water-use-is-less-to-the-total-water-supply" class="nav-link" data-scroll-target="#issue-1-total-water-use-is-less-to-the-total-water-supply">Issue 1: total water use is less to the total water supply</a></li>
+  <li><a href="#solution-1-1" id="toc-solution-1-1" class="nav-link" data-scroll-target="#solution-1-1">Solution 1</a></li>
+  <li><a href="#issue-2-messy-output" id="toc-issue-2-messy-output" class="nav-link" data-scroll-target="#issue-2-messy-output">Issue 2: Messy output</a></li>
+  <li><a href="#solution-2-1" id="toc-solution-2-1" class="nav-link" data-scroll-target="#solution-2-1">Solution 2</a></li>
   </ul></li>
   <li><a href="#historical-production-and-delivery" id="toc-historical-production-and-delivery" class="nav-link" data-scroll-target="#historical-production-and-delivery">Historical Production and Delivery</a>
   <ul class="collapse">
-  <li><a href="#dataset-description-2" id="toc-dataset-description-2" class="nav-link" data-scroll-target="#dataset-description-2">Dataset Description</a></li>
+  <li><a href="#issue-1-negative-numbers" id="toc-issue-1-negative-numbers" class="nav-link" data-scroll-target="#issue-1-negative-numbers">Issue 1: Negative numbers</a></li>
+  <li><a href="#solution-1-2" id="toc-solution-1-2" class="nav-link" data-scroll-target="#solution-1-2">Solution 1</a></li>
+  <li><a href="#issue-2-not-aplicable-vs.-missing-values" id="toc-issue-2-not-aplicable-vs.-missing-values" class="nav-link" data-scroll-target="#issue-2-not-aplicable-vs.-missing-values">Issue 2: Not aplicable Vs. missing values</a></li>
+  <li><a href="#solution-2-2" id="toc-solution-2-2" class="nav-link" data-scroll-target="#solution-2-2">Solution 2</a></li>
+  <li><a href="#issue-3-date-limit" id="toc-issue-3-date-limit" class="nav-link" data-scroll-target="#issue-3-date-limit">Issue 3: Date limit</a></li>
+  <li><a href="#solution-3" id="toc-solution-3" class="nav-link" data-scroll-target="#solution-3">Solution 3</a></li>
   </ul></li>
   <li><a href="#monthly-water-shortage-outlook" id="toc-monthly-water-shortage-outlook" class="nav-link" data-scroll-target="#monthly-water-shortage-outlook">Monthly Water Shortage Outlook</a>
   <ul class="collapse">
-  <li><a href="#dataset-description-3" id="toc-dataset-description-3" class="nav-link" data-scroll-target="#dataset-description-3">Dataset Description</a></li>
+  <li><a href="#issue-1-missing-values-assessment" id="toc-issue-1-missing-values-assessment" class="nav-link" data-scroll-target="#issue-1-missing-values-assessment">Issue 1: Missing Values Assessment</a></li>
+  <li><a href="#solution-1-3" id="toc-solution-1-3" class="nav-link" data-scroll-target="#solution-1-3">Solution 1</a></li>
+  <li><a href="#issue-2-standardize-naming" id="toc-issue-2-standardize-naming" class="nav-link" data-scroll-target="#issue-2-standardize-naming">Issue 2: Standardize Naming</a></li>
+  <li><a href="#solution-2-3" id="toc-solution-2-3" class="nav-link" data-scroll-target="#solution-2-3">Solution 2</a></li>
+  <li><a href="#issue-3-column-descriptions" id="toc-issue-3-column-descriptions" class="nav-link" data-scroll-target="#issue-3-column-descriptions">Issue 3: Column descriptions</a></li>
+  <li><a href="#solution-3-1" id="toc-solution-3-1" class="nav-link" data-scroll-target="#solution-3-1">Solution 3</a></li>
+  <li><a href="#issue-4-add-units" id="toc-issue-4-add-units" class="nav-link" data-scroll-target="#issue-4-add-units">Issue 4: Add Units</a></li>
+  <li><a href="#solution-4" id="toc-solution-4" class="nav-link" data-scroll-target="#solution-4">Solution 4</a></li>
   </ul></li>
   <li><a href="#source-name" id="toc-source-name" class="nav-link" data-scroll-target="#source-name">Source Name</a>
   <ul class="collapse">
-  <li><a href="#dataset-description-4" id="toc-dataset-description-4" class="nav-link" data-scroll-target="#dataset-description-4">Dataset Description</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">Dataset Description</a></li>
   </ul></li>
+  <li><a href="#gaps-across-datasets" id="toc-gaps-across-datasets" class="nav-link" data-scroll-target="#gaps-across-datasets">Gaps Across Datasets</a></li>
+  <li><a href="#across-all-four-datasets" id="toc-across-all-four-datasets" class="nav-link" data-scroll-target="#across-all-four-datasets">Across all four datasets</a>
+  <ul class="collapse">
+  <li><a href="#issue-1-large-amount-of-nas-in-all-datasets" id="toc-issue-1-large-amount-of-nas-in-all-datasets" class="nav-link" data-scroll-target="#issue-1-large-amount-of-nas-in-all-datasets">Issue 1: Large amount of NAs in all datasets</a></li>
+  <li><a href="#solution-1-4" id="toc-solution-1-4" class="nav-link" data-scroll-target="#solution-1-4">Solution 1:</a></li>
+  <li><a href="#issue-2" id="toc-issue-2" class="nav-link" data-scroll-target="#issue-2">Issue 2:</a></li>
+  <li><a href="#solution-2-4" id="toc-solution-2-4" class="nav-link" data-scroll-target="#solution-2-4">Solution 2:</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#across-dataset" id="toc-across-dataset" class="nav-link" data-scroll-target="#across-dataset">Across Dataset</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -90,46 +156,910 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 30, 2025</p>
+    </div>
+  </div>
   
     
   </div>
   
 
+
 </header>
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This document is here to provide descrepancies in the data located on the <a href="https://data.cnra.ca.gov/dataset/urban-water-data-drought">California Natural Resource Agency’s website</a>. The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data’s accessiblity and useability. In conjunction with UCSB’s Bren School’s Master of Environmental Data Science CalDrought Capstone Team, we aim to provide a full synthesis of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. This document is broken down into five main categories representing the five main data sets used in this project. The five main datasets are as follows: <code>Actual Water Shortage Level</code>, <code>Five Year Water Shortage Outlook</code>, <code>Historical Production and Delivery</code>, <code>Monthly Water Shortage Outlook</code>, and <code>Source Name</code>.</p>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This document is here to provide discrepancies in the data located on the <a href="https://data.cnra.ca.gov/dataset/urban-water-data-drought">California Natural Resource Agency’s website</a>. The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data’s accessibility and usability. In conjunction with UCSB’s Bren School’s Master of Environmental Data Science CalDrought Capstone Team, we aim to provide a full synthesis of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. This document is broken down into five main categories representing the five main data sets used in this project. The five main data sets are as follows: <code>Actual Water Shortage Level</code>, <code>Five Year Water Shortage Outlook</code>, <code>Historical Production and Delivery</code>, <code>Monthly Water Shortage Outlook</code>, and <code>Source Name</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># load in data</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>actual_water_shortage_level <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"actual_water_shortage_level.csv"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>five_year_shortage <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"five_year_water_shortage_outlook.csv"</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>historical_production_delivery <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"historical_production_delivery.csv"</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>monthly_water_shortage_outlook <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"monthly_water_shortage_outlook.csv"</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>source_name <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"source_name.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="within-datasets" class="level1">
+<h1>Within Datasets</h1>
 <section id="actual-water-shortage-level" class="level2">
 <h2 class="anchored" data-anchor-id="actual-water-shortage-level">Actual Water Shortage Level</h2>
-<section id="dataset-description" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-description">Dataset Description</h3>
+<p>This dataset reports the monthly state standard shortage level by urban retail water suppliers, which are generally defined as agencies serving over 3,000 service connections or deliveries 3,000 acre-feet of water annually for municipal purposes. These data are collected by the State Water Resources Control Board through its monthly Conservation Reporting and the data included in this dataset represent a small component of the larger dataset. Information about these reports can be found on the Water Conservation Portal, which is no longer active, and the full data (which represents the source data for this dataset) are available on the California Open Data Portal. Beginning in 2023, the reporting of these data transitioned to the SAFER Clearinghouse.</p>
+<p>Data use limitations: Prior to 2022, shortage levels were not standardized, which makes the data difficult to use. This dataset was filtered to include 2022 onwards where shortage levels are standardized.</p>
+<section id="issue-1-date-limitation" class="level3">
+<h3 class="anchored" data-anchor-id="issue-1-date-limitation">Issue 1: Date Limitation</h3>
+<p>Our actual shortage data is limited to only WY 2022, 2023, and half of 2024. We are limited 31 months worth of data starting Jan 01, 2022 - July 31, 2024.</p>
+<p><strong>Start Dates</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique start_date values</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>all_start_dates <span class="ot">&lt;-</span> actual_water_shortage_level <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(start_date) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(start_date)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_start_dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 1
+   start_date
+   &lt;date&gt;    
+ 1 2022-01-01
+ 2 2022-02-01
+ 3 2022-03-01
+ 4 2022-04-01
+ 5 2022-05-01
+ 6 2022-06-01
+ 7 2022-07-01
+ 8 2022-08-01
+ 9 2022-09-01
+10 2022-10-01
+# ℹ 21 more rows</code></pre>
+</div>
+</div>
+<p><strong>End Dates</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get unique end_date values</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>all_end_dates <span class="ot">&lt;-</span> actual_water_shortage_level <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(end_date) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(end_date)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_end_dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 1
+   end_date  
+   &lt;date&gt;    
+ 1 2022-01-31
+ 2 2022-02-28
+ 3 2022-03-31
+ 4 2022-04-30
+ 5 2022-05-31
+ 6 2022-06-30
+ 7 2022-07-31
+ 8 2022-08-31
+ 9 2022-09-30
+10 2022-10-31
+# ℹ 21 more rows</code></pre>
+</div>
+</div>
+<p>There are 31 observations and 31 months between the first/last start and end dates.</p>
+<p>First Start_date: 01/01/2022, Last Start_date: 07/01/2024</p>
+<p>First End_date: 01/31/2022, Last End_date: 07/31/2024</p>
+</section>
+<section id="solution-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-1">Solution 1</h3>
+<p>None. More Consistent Data Collection.</p>
+</section>
+<section id="issue-2-given-our-data-is-qualitative-and-was-most-recently-standardized" class="level3">
+<h3 class="anchored" data-anchor-id="issue-2-given-our-data-is-qualitative-and-was-most-recently-standardized">Issue 2: Given our data is qualitative and was most recently standardized</h3>
+<p>As of Jan 01, 2022. Although we do not directly have access to data before WY 2022. Though due to inconsistencies in adopting the standard we can notice that although we have observations for the first 2 months all of our locations have NA values. Whether that’s due to the districts not reporting it or whether it wasn’t translatable to our new standard is unclear.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count of NA's by start_date.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>actual_water_shortage_level <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">na_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(state_standard_shortage_level)),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_orgs =</span> <span class="fu">n_distinct</span>(org_id)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  start_date na_count unique_orgs
+  &lt;date&gt;        &lt;int&gt;       &lt;int&gt;
+1 2022-01-01      400         400
+2 2022-02-01      393         393</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-2" class="level3">
+<h3 class="anchored" data-anchor-id="solution-2">Solution 2</h3>
+<p>None. Maintain the standard for future data additions.</p>
 </section>
 </section>
 <section id="five-year-water-shortage-outlook" class="level2">
 <h2 class="anchored" data-anchor-id="five-year-water-shortage-outlook">Five Year Water Shortage Outlook</h2>
-<section id="dataset-description-1" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-description-1">Dataset Description</h3>
+<p>This table provides anticipated annual potable water levels (both surplus and shortage) with shortage actions and without shortage actions for five years based on the five driest consecutive years on record. The Urban Water Management Plans (UWMP) reports this data. All data reported through the UWMP are currently available on the WUE portal and the California Natural Resources Open Data Portal. The most recent UWMP guidance is available here. See 7-20 through 7-34 for information about the data elements contained in the five_year_outlook table.</p>
+<p>The most important metrics for this dataframe are as follows: <code>water_use_acre_feet</code>, <code>water_supplies_acre_feet</code>, <code>benefit_supply_augmentation_acre_feet</code>, and <code>benefit_demand_reduction_acre_feet</code>. These variables represent, for a given year, total water use, total water supply, total supply augmentation (buying from another water district), and total demand reduction (policies in place to reduce water use) for specific water districts. As explained above, this dataset has self reported metrics from each local water district based on their five driest consecutive years on record.</p>
+<p>Data use limitations: Similar to the monthly_water_shortage_outlook data, these data also reflect forecasted values rather than actual values. These data are expected to change as conditions change.</p>
+<section id="issue-1-total-water-use-is-less-to-the-total-water-supply" class="level3">
+<h3 class="anchored" data-anchor-id="issue-1-total-water-use-is-less-to-the-total-water-supply">Issue 1: total water use is less to the total water supply</h3>
+<p>As mentioned above, there are four metrics that we are interested in for this dataset. These four variables combined make up how much water a water district has available and is using. In many such cases the total water use is less than or equal to the total water supply. This indicates that a water district has a surplus of water. However, in the other case, where total water use is greater than total water supply, it must mean that the water district is either augmenting their water supply or reducing their water consumption. Thus, total water use should equal total water supply + total benefit augmentation + total demand reduction.</p>
+<p>To find the rows where this doesn’t hold true, let’s assume that <code>NA</code> values for <code>supply_augmentation</code> and <code>demand_reduction</code> are 0s. Let’s use this logic to find water districts that have misreported data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replacing NAs with 0s, assuming this as true </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>five_year_replace_na <span class="ot">&lt;-</span> five_year_shortage <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mutate existing columns and replace NAs with 0s</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">benefit_supply_augmentation_acre_feet =</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">replace_na</span>(benefit_supply_augmentation_acre_feet, <span class="dv">0</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">benefit_demand_reduction_acre_feet =</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">replace_na</span>(benefit_demand_reduction_acre_feet, <span class="dv">0</span>)) </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a function that calculates supply + demand red + supply aug when Use &gt; Supply</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>calculate_benefit <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  five_year_replace_na <span class="sc">%&gt;%</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create new columns</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total_benefit =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Use ifelse statement for when use &gt; supply </span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      water_use_acre_feet <span class="sc">&gt;</span> water_supplies_acre_feet,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># If true, then do the following, If false, assign a 0 </span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>      water_supplies_acre_feet <span class="sc">+</span> benefit_demand_reduction_acre_feet <span class="sc">+</span> benefit_supply_augmentation_acre_feet, <span class="dv">0</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the function to reassign the df </span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>five_year_replace_na <span class="ot">&lt;-</span> <span class="fu">calculate_benefit</span>(five_year_replace_na)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's view the data where total_benefit does not equal total use</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>five_year_na_filtered <span class="ot">&lt;-</span> five_year_replace_na <span class="sc">%&gt;%</span> </span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_benefit <span class="sc">!=</span> <span class="dv">0</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>         water_use_acre_feet <span class="sc">!=</span> total_benefit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="solution-1-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-1-1">Solution 1</h3>
+<p>From this output, we can see the local water districts that have areas of error. Similar to the first issue, there are no proper data science solutions to fix this problem, as it stems for the initial self-reporting from water districts.</p>
+</section>
+<section id="issue-2-messy-output" class="level3">
+<h3 class="anchored" data-anchor-id="issue-2-messy-output">Issue 2: Messy output</h3>
+<p>One smaller issue unrelated to the integrity of the data is the output in the <code>supplier_name</code> column. The outputs are a bit messy and need to be tampered with a little for effective function plot and table output</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>five_year_shortage_name <span class="ot">&lt;-</span> five_year_shortage <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Changing position of city of to be behind the city name</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ([a-zA-Z\\]+) selects any sequence before city of</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># city of \\1 rearranges text so "city of" comes first</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supplier_name =</span> <span class="fu">str_replace</span>(supplier_name, <span class="st">"([a-zA-Z</span><span class="sc">\\</span><span class="st">s]+) city of"</span>, <span class="st">"city of </span><span class="sc">\\</span><span class="st">1"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supplier_name =</span> <span class="fu">str_to_title</span>(supplier_name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Data Check 1</strong> The following is a method to check that each unique water district has 5 represented drought years.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>five_year_data_check <span class="ot">&lt;-</span> five_year_shortage <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group by each org ID</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(org_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count each org IDs observations </span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"Each org_id should hhave exactly 5 observations"</span>, {</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if any org_id does not have exactly 5 observations</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_true</span>(<span class="fu">all</span>(five_year_data_check<span class="sc">$</span>n <span class="sc">==</span><span class="dv">5</span>),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">info =</span> <span class="st">"One or more org_ids do not have exactly 5 observations"</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed 🥇</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-2-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-2-1">Solution 2</h3>
+<p>[insert soln]</p>
 </section>
 </section>
 <section id="historical-production-and-delivery" class="level2">
 <h2 class="anchored" data-anchor-id="historical-production-and-delivery">Historical Production and Delivery</h2>
-<section id="dataset-description-2" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-description-2">Dataset Description</h3>
+<p>The Historical Production and Delivery dataframe provides data about water production and delivery from 2013-2022. The columns are PWSID, water system name, org id, start date, end date, water produced or delivered, water type, and quantity acre feet. It should be noted that the water type column contains both produced water types and delivered water types. The first step when working with the data for analysis should be to filter the water produced or delivered column for either produced OR delivered. This will then allow for ease of analysis.</p>
+<section id="issue-1-negative-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="issue-1-negative-numbers">Issue 1: Negative numbers</h3>
+<p>There are negative numbers in the <code>quantity_acre_feet</code> column. This does not make sense as water quantity cannot be negative. Currently there are 280 negative values in the <code>quantity_acre_feet</code> column</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>historical_production_delivery <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(quantity_acre_feet <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 280</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-1-2" class="level3">
+<h3 class="anchored" data-anchor-id="solution-1-2">Solution 1</h3>
+<p>The temporary solution for analysis and visualization is to remove the negative numbers from the column. Although 280 is a very small number in comparison to the 902 thousand rows present in the table, it’s still best practice to remove them when calculating summary statistics. If the negative sign was added by accident and the absolute value of the numbers is correct, those can be replaced easily for the right numbers. If the absolute values are not correct, replacing them with NAs or the correct value is necessary.</p>
+</section>
+<section id="issue-2-not-aplicable-vs.-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="issue-2-not-aplicable-vs.-missing-values">Issue 2: Not aplicable Vs. missing values</h3>
+<p>Lack of clear distinction between N/As, meaning that there is no distinction between non-applicable values and missing information.</p>
+</section>
+<section id="solution-2-2" class="level3">
+<h3 class="anchored" data-anchor-id="solution-2-2">Solution 2</h3>
+<p>Have detailed metadata explaining the difference and how to identify that. If the difference is not identifiable, that should also be clear in the metadata.</p>
+</section>
+<section id="issue-3-date-limit" class="level3">
+<h3 class="anchored" data-anchor-id="issue-3-date-limit">Issue 3: Date limit</h3>
+<p>Dataset is currently not up to date (as of April 2025)</p>
+</section>
+<section id="solution-3" class="level3">
+<h3 class="anchored" data-anchor-id="solution-3">Solution 3</h3>
+<p>While the metadata does explain the lack of entries for recent years, in the future, years will continue to be updated to allow for meaningful analysis.</p>
 </section>
 </section>
 <section id="monthly-water-shortage-outlook" class="level2">
 <h2 class="anchored" data-anchor-id="monthly-water-shortage-outlook">Monthly Water Shortage Outlook</h2>
-<section id="dataset-description-3" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-description-3">Dataset Description</h3>
+<p>Forecasted Monthly Water Shortage (Level/percentage/quantity)</p>
+<p>The California Water Code requires each urban water supplier to provide a description of the data used to characterize and quantify the water use types and water demands in their UWMP. This dataset was created to provide <strong>forecasted</strong> monthly (and annual) potable water shortage (or surplus) with and without shortage actions for a dry year. The Annual Water Supply and Demand Assessment (AWSDA) reports this data. All data reported through the AWSDA are available on the DWR’s Water Use Efficiency (WUE) portal<br>
+<br>
+Suppliers report the numbers of their estimated total annual demands based on their planning cycle (from July – June Planning Cycle: Suppliers with a current planning cycle starting on the July due date and ending on the following June)</p>
+<section id="issue-1-missing-values-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="issue-1-missing-values-assessment">Issue 1: Missing Values Assessment</h3>
+<p>When calculating the number of missing values (NAs), it’s important to consider the reporting frequency. For example, in the case of annual reporting, only one data point is expected per year, and the remaining 11 months will naturally contain NAs. These should not be counted as missing values. The same logic applies to bi-annual reporting, where only two data points are expected per year.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg <span class="ot">&lt;-</span> monthly_water_shortage_outlook <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"org_id"</span>, <span class="st">"supplier_name"</span>, <span class="st">"reporting_interval"</span>, <span class="st">"shortage_surplus_acre_feet"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(supplier_name <span class="sc">==</span> <span class="st">"City of Alhambra"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Annual Reporting Example"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="st">"Filtered for: Alhambra City of"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="mwhuptsjdo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwhuptsjdo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mwhuptsjdo thead, #mwhuptsjdo tbody, #mwhuptsjdo tfoot, #mwhuptsjdo tr, #mwhuptsjdo td, #mwhuptsjdo th {
+  border-style: none;
+}
+
+#mwhuptsjdo p {
+  margin: 0;
+  padding: 0;
+}
+
+#mwhuptsjdo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mwhuptsjdo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mwhuptsjdo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mwhuptsjdo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mwhuptsjdo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mwhuptsjdo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mwhuptsjdo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mwhuptsjdo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mwhuptsjdo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mwhuptsjdo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mwhuptsjdo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mwhuptsjdo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mwhuptsjdo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mwhuptsjdo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mwhuptsjdo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwhuptsjdo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mwhuptsjdo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mwhuptsjdo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mwhuptsjdo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwhuptsjdo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mwhuptsjdo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwhuptsjdo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mwhuptsjdo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwhuptsjdo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwhuptsjdo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwhuptsjdo .gt_left {
+  text-align: left;
+}
+
+#mwhuptsjdo .gt_center {
+  text-align: center;
+}
+
+#mwhuptsjdo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mwhuptsjdo .gt_font_normal {
+  font-weight: normal;
+}
+
+#mwhuptsjdo .gt_font_bold {
+  font-weight: bold;
+}
+
+#mwhuptsjdo .gt_font_italic {
+  font-style: italic;
+}
+
+#mwhuptsjdo .gt_super {
+  font-size: 65%;
+}
+
+#mwhuptsjdo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mwhuptsjdo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mwhuptsjdo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mwhuptsjdo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mwhuptsjdo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mwhuptsjdo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mwhuptsjdo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mwhuptsjdo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mwhuptsjdo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="4" class="gt_heading gt_title gt_font_normal">Annual Reporting Example</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Filtered for: Alhambra City of</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="org_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">org_id</th>
+<th id="supplier_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">supplier_name</th>
+<th id="reporting_interval" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">reporting_interval</th>
+<th id="shortage_surplus_acre_feet" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">shortage_surplus_acre_feet</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>annual_reporting_eg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 4
+# ℹ 4 variables: org_id &lt;dbl&gt;, supplier_name &lt;chr&gt;, reporting_interval &lt;chr&gt;,
+#   shortage_surplus_acre_feet &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><img src="images/clipboard-3092360758.png" class="img-fluid"></p>
+</section>
+<section id="solution-1-3" class="level3">
+<h3 class="anchored" data-anchor-id="solution-1-3">Solution 1</h3>
+<p>(refer to appendix for code) Use the <code>dropna()</code> function specifically on the dataset subset corresponding to the expected reporting frequency (e.g., annual or bi-annual) <em>before</em> calculating the total number of NAs. This ensures that structurally expected NAs are not incorrectly flagged as data issues.</p>
+</section>
+<section id="issue-2-standardize-naming" class="level3">
+<h3 class="anchored" data-anchor-id="issue-2-standardize-naming">Issue 2: Standardize Naming</h3>
+<p><code>supplier_name</code> could be normalized or matched against a unique registry to reduce duplicates or misspellings.</p>
+</section>
+<section id="solution-2-3" class="level3">
+<h3 class="anchored" data-anchor-id="solution-2-3">Solution 2</h3>
+<p>Add to the reporting form the list of water districts where user can select from</p>
+</section>
+<section id="issue-3-column-descriptions" class="level3">
+<h3 class="anchored" data-anchor-id="issue-3-column-descriptions">Issue 3: Column descriptions</h3>
+</section>
+<section id="solution-3-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-3-1">Solution 3</h3>
+<p>Consider including a data dictionary for external users—some field names are intuitive (<code>shortage_surplus_percent</code>), others less so (<code>is_wscp_action</code>).</p>
+</section>
+<section id="issue-4-add-units" class="level3">
+<h3 class="anchored" data-anchor-id="issue-4-add-units">Issue 4: Add Units</h3>
+<p>Inconsistent labels with units included and not included</p>
+</section>
+<section id="solution-4" class="level3">
+<h3 class="anchored" data-anchor-id="solution-4">Solution 4</h3>
+<p>While most fields likely use acre-feet and percentages, having units explicitly in column names or metadata improves clarity (e.g., <code>shortage_surplus_percent (%)</code>).</p>
 </section>
 </section>
 <section id="source-name" class="level2">
 <h2 class="anchored" data-anchor-id="source-name">Source Name</h2>
-<section id="dataset-description-4" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-description-4">Dataset Description</h3>
+<section id="dataset-description" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-description">Dataset Description</h3>
 </section>
+</section>
+<section id="gaps-across-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="gaps-across-datasets">Gaps Across Datasets</h2>
+</section>
+<section id="across-all-four-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="across-all-four-datasets">Across all four datasets</h2>
+<section id="issue-1-large-amount-of-nas-in-all-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="issue-1-large-amount-of-nas-in-all-datasets">Issue 1: Large amount of NAs in all datasets</h3>
+<p>Actual Shortage: From our data we can also perceive that even past the adoption date beginning 2022 we do have a decent amount of <code>NA</code> values within our data. We do not know where these values come from as our range should be between c(0, 6) where 0 is <code>No Shortage</code> and 6 is <code>&gt;50% shortage</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count of NA's by start_date.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>actual_water_shortage_level <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(start_date) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">na_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(state_standard_shortage_level)),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_orgs =</span> <span class="fu">n_distinct</span>(org_id)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 29 × 3
+   start_date na_count unique_orgs
+   &lt;date&gt;        &lt;int&gt;       &lt;int&gt;
+ 1 2022-03-01        1         401
+ 2 2022-04-01        3         401
+ 3 2022-05-01        5         400
+ 4 2022-06-01        4         402
+ 5 2022-07-01        3         397
+ 6 2022-08-01        3         399
+ 7 2022-09-01        1         398
+ 8 2022-10-01        3         391
+ 9 2022-11-01        4         388
+10 2022-12-01        4         392
+# ℹ 19 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-1-4" class="level3">
+<h3 class="anchored" data-anchor-id="solution-1-4">Solution 1:</h3>
+<p>None. Requires Better Accountability when reporting and recording data.</p>
+<p>Historical Production and Delivery: The first issue is the amount of N/As in the dataset. This prevents the data from being easy to interpret and could lead to misinformation. There are currently 111414 NAs in this data alone.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 111414</code></pre>
+</div>
+</div>
+<p>(refer to appendix for code)</p>
+<p>In order to work with this data and prevent misinformation, NAs were omitted from summary statistic calculations, but are shown in the missing values widget of the dashboard. Ideally, the NAs will be removed and/or replaced in this dataset. Another option is more detailed metadata, that could explain why there are so many NAs and what they mean.</p>
+<p>Five Year Shortage: When viewing the dataframe, one of the first things one may notice is that there are a lot of missing values for the <code>benefit_supply_augmentation_acre_feet</code> and <code>benefit_demand_reduction_acre_feet</code> columns. That being said, if <code>water_use_acre_feet</code> is less than or equal to <code>water_supplies_acre_feet</code> then it is not necessary to reduce or augment water, meaning the people who self reported this data did not enter anything for the columns, resulting in an <code>NA</code> value. However, let’s check to see if there are any data discrepancies where this does not hold true: where values for <code>supply_augmentation</code> and <code>demand_reduction</code> should be present, but are not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter five year data </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>five_use_greater_supply <span class="ot">&lt;-</span> five_year_shortage <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter to where Use is greater than Supply</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(water_use_acre_feet <span class="sc">&gt;</span> water_supplies_acre_feet,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="co"># Now filter for NAs in both augmentation &amp; reduction columns</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">is.na</span>(benefit_supply_augmentation_acre_feet) <span class="sc">&amp;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">is.na</span>(benefit_demand_reduction_acre_feet))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This filtered dataframe shows some discrepancies within the original data. The new dataframe is very small (12 observations), which is a good thing. There are no real data science solutions to fix this. As this is self reported data, the solution should be fixated on the source (specific water district).</p>
+</section>
+<section id="issue-2" class="level3">
+<h3 class="anchored" data-anchor-id="issue-2">Issue 2:</h3>
+<p>Little to no overlap between dates in datasets (makes it difficult to compare)</p>
+</section>
+<section id="solution-2-4" class="level3">
+<h3 class="anchored" data-anchor-id="solution-2-4">Solution 2:</h3>
+<p>Future consistent additions to the dataset over time will create overlap that can then be used for comparison and analysis.</p>
+</section>
+</section>
+</section>
+<section id="across-dataset" class="level1">
+<h1>Across Dataset</h1>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<p>Across all 4 datasets Issue 1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check amount of NAs for entire dataset</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 111414</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check amount of NAs for individual columns</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>pwsid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>water_system_name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>org_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>start_date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>end_date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>water_produced_or_delivered))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>water_type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># currently all NAs located in quantity acre feet column</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(historical_production_delivery<span class="sc">$</span>quantity_acre_feet))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 111414</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs from dataset</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>historical_production_delivery <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(historical_production_delivery)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 </main>
@@ -169,18 +1099,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -212,11 +1131,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -226,8 +1184,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -239,7 +1206,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -283,6 +1373,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -308,6 +1399,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -368,6 +1485,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
