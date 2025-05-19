@@ -26,78 +26,70 @@ The Desired Gap Analysis outlines the recommended information, datasets, and ana
 
 ### Is there a spatial and/or temporal pattern in water shortages?
 
-**Solution 1**
-To address spatial and temporal patterns in water shortages, it is necessary to integrate geographic information system (GIS) data with historical and forecasted shortage levels. Incorporating weather and climate datasets (e.g., precipitation, temperature anomalies, snowpack levels) and hydrologic flow data from stream gauges will improve understanding of spatial trends. Temporally, datasets should include consistent monthly records over at least a 10-year span. This analysis also requires standardized data submission formats across water suppliers to reduce inconsistencies. Tools such as spatial regression and time-series clustering can then be applied to detect regional patterns.
+**Solution 1** To address spatial and temporal patterns in water shortages, it is necessary to integrate geographic information system (GIS) data with historical and forecasted shortage levels. \
+For example, incorporating weather datasets (e.g., precipitation, temperature anomalies, snowpack levels) and hydrologic flow data from stream gauges will improve understanding of spatial trends and groundwater availability spatial datasets can be useful to understand temporal patterns. Datasets should include consistent monthly records, this analysis also requires complete dataset across water districts.
 
-Water Availability Data:
-This includes data on precipitation, runoff, river flows, groundwater levels, and other relevant hydrological factors.
-Water Demand Data:
-This includes population density, agricultural land use, industrial water use, and other indicators of water consumption.
-Water Availability Calculations:
-Use hydrological models or simplified calculations to estimate water availability in different areas. 
-This might involve calculating the difference between precipitation and evapotranspiration, or using more complex models to account for runoff, recharge, and other factors. 
+Potential analysis include:\
+\
+Water Availability Data: This includes data on precipitation, runoff, river flows, groundwater levels, and other relevant hydrological factors. \
+\
+Water Demand Data: This includes population density, agricultural land use, industrial water use, and other indicators of water consumption. \
+\
+Water Availability Calculations: Use hydrological models or simplified calculations to estimate water availability in different areas. This might involve calculating the difference between precipitation and evapotranspiration, or using more complex models to account for runoff, recharge, and other factors.
 
 ## Local Level Questions
 
-### Is my supply meeting my demand? For what time frame, the upcoming year? 
+### Is my supply meeting my demand? For what time frame, the upcoming year?
 
-**Solution 2**
-Local agencies must ensure they are tracking monthly water production (supply) and customer-level or sectoral usage data (demand) consistently. These values should be aligned with forecasted population growth, weather-normalized consumption, and planned conservation actions. To evaluate supply-demand balance, it is necessary to develop or refine existing scenario planning models that simulate different demand conditions (e.g., dry vs. wet years). Encouraging water agencies to report projected demand alongside actual use will close this data gap.
+**Solution** Water districts must ensure they are tracking monthly water production (supply) and usage data (demand) and properly submitting the reports. A standard method of determining shortage should be included in the forms provided so water resource managers can provide their numbers. \
+Further analysis can be performed to check if there is alignment with forecasted population growth, weather patterns and planned conservation actions.
 
-For forecasting over the upcoming year, agencies need to integrate short-term weather projections, current reservoir or groundwater levels, and planned conservation targets into their forecasts. Incorporating near-term hydrologic models and leveraging tools like the California Data Exchange Center (CDEC) for real-time reservoir and flow data can improve local predictive capacity. Emphasis should also be placed on data granularity—monthly forecasting at minimum.
+For forecasting over the upcoming year, agencies need to integrate short-term weather projections, current reservoir or groundwater levels, and planned conservation targets into their forecasts. Incorporating near-term hydrologic models and leveraging their own complete datasets can improve local predictive capacity.
 
 ## State and Local Level Questions
 
-**Please describe how you would calculate supply and demand changes over time across California (local, regional, state-wide)? **
+**Please describe how you would calculate supply and demand changes over time across California (local, regional, state-wide)? \*\*should we include this one?**
 
-### How is my change in supply/demand relative to those around me? 
+### How is my change in supply/demand relative to those around me?
+
 **Solution 3**
-This requires the creation of a centralized, standardized database combining all water supply and demand submissions at the local level. Each entry must be geotagged and time-stamped. Analytical methods like trend decomposition, moving averages, and comparative regional time series should be employed. Furthermore, harmonizing data definitions (e.g., what constitutes “demand”) and integrating cross-agency datasets (e.g., DWR, SWRCB) would enable holistic analysis.
-
-This question can be answered using benchmarking dashboards that compare water use trends between neighboring or demographically similar regions. However, this requires agencies to submit standardized data at regular intervals, and metadata must clearly indicate geographic coverage and supply types. The use of peer-comparison visualizations and interactive maps can assist local decision-makers.
 
 ### Is the rate of supply and/or demand increasing or decreasing?
 
-**Solution 4**
-To determine these rates, implement longitudinal data collection protocols with mandatory monthly submissions. Statistical models (e.g., linear regression, time series ARIMA) can then be applied to identify trends. Without complete time-series data, trend analyses are limited. This gap should be closed through regulatory requirements for full historical backfilling and future monthly submissions.
+**Solution** To determine these rates, a complete time-series datasets are completed to understand the full picture. The gap of limited datasts should be closed through regulatory requirements for full historical backfilling and future monthly submissions.
 
-### How much water does agriculture/big industrial sites consume in the area? How is this changing the demand pattern? 
+### How much water does agriculture/big industrial sites consume in the area? How is this changing the demand pattern?
 
-**Solution 5**
-This analysis is only possible if sector-level water usage data is collected and reported, which is currently inconsistent or unavailable in many regions. To close this gap, local agencies must be required or incentivized to disaggregate usage by sector (residential, commercial, agricultural, industrial). Integrating external data sources like land use records, irrigated acreage data, and industrial permits can enhance this understanding.
+**Solution** This analysis can be performed using historical water metered data. It is suggested to ask water districts to identify their large metered customers, and extract these historical datasets from utilities or customers. Alternatively, a program can be implemented to temporarly install a sensor to a nearby water network asset (e.g a hydrant) that can capture the weekly patterns of consumption.
 
-### How do you assess if there is a projected risk of shortages in the future? 
-**Solution 6**
-Forecasting shortage risks requires the integration of multi-year climate forecasts, current storage data, and forecasted demand models. Scenario-based modeling should include best, median, and worst-case outcomes and incorporate known variables like planned developments or drought policy changes. Using machine learning models trained on historical shortages could also support probabilistic forecasting. Validating these models requires access to past projection accuracy data (see below).
+### How do you assess if there is a projected risk of shortages in the future?
 
-### How do you identify trends (increasing/decreasing) in shortages? 
+**Solution** Forecasting shortage risks requires the integration of multi-year climate forecasts, current storage data, and forecasted demand models. \
+Consider scenario-based modeling should include best, median, and worst-case outcomes and incorporate known variables like planned developments or drought policy changes. Using machine learning models trained on historical shortages could also support probabilistic forecasting.
 
-**Solution 7**
-To identify trends, conduct time-series analyses on historical shortage data. Ensure monthly resolution and geographic tagging. Include indicators like frequency, duration, and severity of shortages. Data visualization tools such as heatmaps and cumulative shortage curves can support trend communication. This also requires standardization of what defines a “shortage” across agencies.
+### How do you identify trends (increasing/decreasing) in shortages?
 
-### Do you evaluate if the projections have been accurate, if so, please explain what methods are used to assess the accuracy of the projections? 
+**Solution** To identify trends, conduct time-series analyses on historical shortage data. Ensure monthly resolution and geographic tagging. Consider computing indicators like frequency, duration, and severity of shortages. Data visualization tools such as heatmaps and cumulative shortage curves can support trend communication. This also requires standardization across water districts.
 
-**Solution 8**
-Currently, projection accuracy evaluation is limited. A solution would involve establishing a forecast verification framework where past forecasted values are regularly compared against actual outcomes using metrics like Mean Absolute Error (MAE) or Root Mean Squared Error (RMSE). This should be institutionalized into reporting practices. Agencies should also document the assumptions and inputs behind their forecasts to enable more meaningful evaluations of predictive reliability.
+### Do you evaluate if the projections have been accurate, if so, please explain what methods are used to assess the accuracy of the projections?
 
-Additional
+**Solution** A solution would involve establishing a forecast verification framework where past forecasted values are regularly compared against actual outcomes using metrics like Mean Absolute Error (MAE) or Root Mean Squared Error (RMSE). \
+\
+Agencies should also document the assumptions and inputs behind their forecasts.
 
 ### Are my neighbors impacted by drought in the same way I am?
-**Solution **
-To compare drought impacts across neighboring areas, water suppliers must report standardized indicators such as shortage levels, conservation targets, drought response stages, and usage reductions. Integrating these with regional climate and hydrologic data (precipitation, temperature, watershed inflows) allows for spatial comparison. A statewide drought impact dashboard that maps conditions across suppliers and overlays climate data would help reveal regional similarities and differences. This analysis also requires historical records of drought declarations and their outcomes across suppliers.
+
+**Solution** To compare drought impacts across neighboring areas, a statewide drought impact should be included in the dashboard that maps conditions across water districts and overlays climate data would help reveal regional differences. This analysis requires historical records of drought levels, which should be calculated using the same procedures for a fair comparison.
 
 ### It is raining – why is my local water supplier concerned about drought?
-**Solution **
-Addressing this question requires clear communication about the difference between short-term weather events and long-term water supply indicators such as groundwater recharge, reservoir levels, and snowpack accumulation. Suppliers should be equipped with and share educational dashboards that explain why recent rainfall may not resolve systemic shortages. This requires integration of real-time and cumulative data on storage, runoff, and long-term precipitation trends, and a public-facing explanation of how supply planning works on seasonal and annual scales, not just immediate weather.
 
-### How much water will my region need to conserve if we enter a drought? 
-**Solution **
-This question can only be answered if suppliers develop drought response plans that quantify conservation goals under different drought scenarios. This includes setting regional targets based on projected supply shortfalls, expected demand, and available storage. However, many regions lack clear drought stage-to-conservation mappings (e.g., Stage 2 = 15% reduction). To close this gap, statewide guidance should require suppliers to submit scenario-based conservation estimates that can be aggregated regionally and communicated proactively.
+**Solution** Addressing this question requires clear communication about the difference between short-term weather events and long-term water supply , perhaps an integration of data: cumulative data on storage, runoff, and long-term precipitation trends, and a public-facing explanation of how supply planning works on seasonal and annual scales, not just immediate weather.
+
+### How much water will my region need to conserve if we enter a drought?
+
+**Solution** This question can only be answered if suppliers develop drought response plans that quantify conservation goals under different drought scenarios. This includes setting regional targets based on projected supply shortfalls, expected demand, and available storage. To standardize this, statewide guidance should require suppliers to submit scenario-based conservation estimates that can be aggregated regionally and communicated proactively.
 
 ### Where are suppliers at risk of shortage? What is their history of shortage?
-**Solution **
-To assess current and historical risk, suppliers must maintain longitudinal records of shortage events, including duration, severity, response actions, and outcomes. This data should be linked to system characteristics such as supply sources, storage capacity, and demand patterns. A centralized shortage risk index could be developed, combining historical shortage data with real-time indicators such as declining storage levels, dry-year yield analysis, and projected demands. These indices would help pinpoint systems most vulnerable to recurring drought.
 
-### What is the projected drought risk for a supplier over the next 5 years?
-**Solution **
-Long-term drought risk projection requires integrating hydroclimate models, demand forecasts, and supply system resilience metrics into multi-year simulation models. These models must be customized per supplier using variables such as source reliability, conservation capacity, and regional climate trends. Current gaps include limited local-level modeling capacity, incomplete future demand forecasts, and lack of scenario-based shortage planning. Investing in forecast modeling tools and requiring submission of 5-year drought risk projections—similar to the "Forecasted Five-Year Shortage Outlook" dataset—would fill this gap. These forecasts should be validated over time to improve accuracy.
+**Solution** To assess current and historical risk of shortage, some datasets of the records of shortage events, can be analyzed, including: duration, severity, response actions. \
+Additionally, this data should be then linked to the supply sources, storage capacity, and demand patterns datasets.
