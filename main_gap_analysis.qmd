@@ -20,10 +20,26 @@ editor_options:
 
 # Introduction
 
-This document is here to provide discrepancies in the data located on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessibility and usability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide a full synthesis of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. This document is broken down into five main categories representing the five main data sets used in this project. The four main data sets are as follows: `Actual Water Shortage Level`, `Five Year Water Shortage Outlook`, `Historical Production and Delivery`, `Monthly Water Shortage Outlook`.
+This document presents the results of a gap analysis of urban water data available on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessibility and usability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide an assessment of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. The report is organized into two main sections: Within Datasets and Across Datasets. \
+\
+The **Within Datasets** section focuses on internal inconsistencies or missing information found *within each individual dataset*. This includes issues such as incomplete fields, inconsistent formatting, unexpected data values, or gaps in time series data that reduce the reliability or interpretability of a single dataset on its own.
+
+The **Across Datasets** section examines cross-referenced issues between the datasets. These inconsistencies can pose challenges for users attempting to combine or compare data across sources for comprehensive analysis or decision-making.
+
+Together, these two levels of analysis aim to provide a detailed understanding of where data quality and compatibility issues exist. These sections highlight data gaps found in the four primary datasets used in this project:
+
+-   Actual Water Shortage Level
+
+-   Five-Year Water Shortage Outlook
+
+-   Historical Production and Delivery
+
+-   Monthly Water Shortage Outlook
+
+# Load Datasets
 
 ```{r eval = TRUE, echo = TRUE, warning=FALSE, message=FALSE}
-# load in libraries
+# Load in libraries
 
 library(tidyverse)
 library(here)
@@ -31,7 +47,7 @@ library(testthat)
 library(janitor)
 library(gt)
 
-# load in data
+# Load in data
 
 actual_water_shortage_level <- read_csv(here("data", "actual_water_shortage_level.csv"))
 five_year_shortage <- read_csv(here("data", "five_year_water_shortage_outlook.csv"))
@@ -84,16 +100,17 @@ The most important metrics for this dataframe are as follows: `water_use_acre_fe
 
 Data use limitations: Similar to the monthly_water_shortage_outlook data, these data also reflect forecasted values rather than actual values. These data are expected to change as conditions change.
 
-### Issue 1: Incosistent Supplier Name Formatting
+### Issue 1: Inconsistent Supplier Name Formatting
 
-While this issue does not affect the integrity of the data itself, the formatting of values in the `supplier_name` column is inconsistent and unstandardized. These inconsistencies—such as variations in the placement of phrases like "City of" and inconsistent capitalization—complicate data visualization, grouping, and table presentation. Minor preprocessing is required to standardize naming conventions for accurate and aesthetically consistent outputs.
+While this issue does not affect the integrity of the data itself, the formatting of values in the `supplier_name` column is inconsistent and unstandardized. These inconsistencies—such as variations in the placement of phrases like "City of" and inconsistent capitalization—complicate data visualization, grouping, and table presentation. Minor pre-processing is required to standardize naming conventions for accurate and aesthetically consistent outputs.
 
 ```{r}
+# Rename city names
 five_year_shortage_name <- five_year_shortage %>% 
   
-  # Changing position of city of to be behind the city name
+  # Change position of city of to be behind the city name
   # ([a-zA-Z\\]+) selects any sequence before city of
-  # city of \\1 rearranges text so "city of" comes first
+  # City of \\1 rearranges text so "city of" comes first
   mutate(supplier_name = str_replace(supplier_name, "([a-zA-Z\\s]+) city of", "city of \\1")) %>% 
   mutate(supplier_name = str_to_title(supplier_name))
   
@@ -103,6 +120,7 @@ five_year_shortage_name <- five_year_shortage %>%
 **Data Check 1** The following is a method to check that each unique water district has 5 represented drought years.
 
 ```{r}
+# Check if each water district has five drought years
 five_year_data_check <- five_year_shortage %>% 
   
   # Group by each org ID
@@ -111,7 +129,7 @@ five_year_data_check <- five_year_shortage %>%
   # Count each org IDs observations 
   tally()
 
-test_that("Each org_id should hhave exactly 5 observations", {
+test_that("Each org_id should have exactly 5 observations", {
   
   # Check if any org_id does not have exactly 5 observations
   expect_true(all(five_year_data_check$n ==5),
@@ -128,13 +146,14 @@ Regarding the data check on drought year representation, we suggest including an
 
 ## Historical Production and Delivery
 
-The Historical Production and Delivery dataframe provides data about water production and delivery from 2013-2022. The columns are PWSID, water system name, org id, start date, end date, water produced or delivered, water type, and quantity acre feet. It should be noted that the water type column contains both produced water types and delivered water types. The first step when working with the data for analysis should be to filter the water produced or delivered column for either produced OR delivered. This will then allow for ease of analysis.
+The Historical Production and Delivery dataframe provides data about water production and delivery from 2013-2022. The columns are PWSID, water system name, org id, start date, end date, water produced or delivered, water type, and quantity acre feet. It should be noted that the water type column contains both produced water types and delivered water types. The first step when working with the data for analysis should be to filter the water produced or delivered column for either produced or delivered. This will then allow for ease of analysis.
 
 ### Issue 1: Invalid Negative numbers
 
 The `quantity_acre_feet` column includes 280 negative values, which are not physically meaningful in the context of water volume reporting. Water quantity, whether produced or delivered, cannot logically be negative. These values may result from data entry errors, reverse flow misreporting, or incorrect unit handling.
 
 ```{r}
+# Count negative values
 historical_production_delivery |> 
   na.omit() |> 
   filter(quantity_acre_feet < 0) |> 
@@ -147,7 +166,7 @@ Although 280 is a very small number in comparison to the 902 thousand rows prese
 
 ### Issue 2: Date limit
 
-Dataset is currently not up to date (as of April 2025)
+Dataset is currently not up to date (as of April 2025).
 
 ### Solution 2
 
@@ -165,7 +184,7 @@ To resolve this issue, we recommend strengthening guidance and training for urba
 
 Forecasted Monthly Water Shortage (Level/percentage/quantity)
 
-The California Water Code requires each urban water supplier to provide a description of the data used to characterize and quantify the water use types and water demands in their UWMP. This dataset was created to provide **forecasted** monthly (and annual) potable water shortage (or surplus) with and without shortage actions for a dry year. The Annual Water Supply and Demand Assessment (AWSDA) reports this data. All data reported through the AWSDA are available on the DWR’s Water Use Efficiency (WUE) portal\
+The California Water Code requires each urban water supplier to provide a description of the data used to characterize and quantify the water use types and water demands in their UWMP. This dataset was created to provide forecasted monthly (and annual) potable water shortage (or surplus) with and without shortage actions for a dry year. The Annual Water Supply and Demand Assessment (AWSDA) reports this data. All data reported through the AWSDA are available on the DWR’s Water Use Efficiency (WUE) portal\
 \
 Suppliers report the numbers of their estimated total annual demands based on their planning cycle (from July – June Planning Cycle: Suppliers with a current planning cycle starting on the July due date and ending on the following June)
 
@@ -175,7 +194,7 @@ Suppliers report the numbers of their estimated total annual demands based on th
 
 Consider including a data dictionary for external users—some field names are intuitive (`shortage_surplus_percent`), others less so (`is_wscp_action`).
 
-## Gaps Across Datasets
+# Gaps Across Datasets
 
 In addition to dataset-specific issues, this section examines discrepancies and limitations that affect the integration of information across all four urban water datasets. These issues include inconsistent organization identifiers, variable naming conventions, different resolutions, and inconsistent geographic references across datasets. These inconsistencies makes it hard to combine or compare data across different water districts or time. This section also offers recommendations aimed at improving alignment across datasets.
 
@@ -199,10 +218,10 @@ actual_water_shortage_level |>
 Historical Production and Delivery: The first issue is the amount of N/As in the dataset. This prevents the data from being easy to interpret and could lead to misinformation. There are currently 111,414 NAs in this data alone.
 
 ```{r}
-# check amount of NAs for entire dataset
+# Check amount of NAs for entire dataset
 sum(is.na(historical_production_delivery))
 
-# check amount of NAs for individual columns
+# Check amount of NAs for individual columns
 sum(is.na(historical_production_delivery$pwsid))
 sum(is.na(historical_production_delivery$water_system_name))
 sum(is.na(historical_production_delivery$org_id))
@@ -213,7 +232,7 @@ sum(is.na(historical_production_delivery$water_type))
 # currently all NAs located in quantity acre feet column
 sum(is.na(historical_production_delivery$quantity_acre_feet))
 
-# remove NAs from dataset
+# Remove NAs from dataset
 historical_production_delivery <- na.omit(historical_production_delivery)
 ```
 
@@ -233,7 +252,7 @@ five_use_greater_supply <- five_year_shortage %>%
 
 This filtered dataframe shows some discrepancies within the original data. The new dataframe is very small (12 observations), which is a good thing.
 
-### Solution 1:
+**Solution**
 
 There are no real data science solutions to fix this. As this is self reported data, the solution should be fixated on the source (specific water district). Also, is it recommended to provide a more detailed metadata, that could explain why there are so many NAs and what they mean.
 
@@ -269,18 +288,18 @@ First Start_date: 01/01/2022, Last Start_date: 07/01/2024
 
 First End_date: 01/31/2022, Last End_date: 07/31/2024
 
-### Solution 2:
+**Solution**
 
 Future consistent additions to the dataset over time will create overlap that can then be used for comparison and analysis.
 
-### Issue 3: total water use is less to the total water supply
+### Issue 3: Total water use is less to the total water supply
 
 As mentioned above, there are four metrics that we are interested in for this dataset. These four variables combined make up how much water a water district has available and is using. In many such cases the total water use is less than or equal to the total water supply. This indicates that a water district has a surplus of water. However, in the other case, where total water use is greater than total water supply, it must mean that the water district is either augmenting their water supply or reducing their water consumption. Thus, total water use should equal total water supply + total benefit augmentation + total demand reduction.
 
 To find the rows where this doesn't hold true, let's assume that `NA` values for `supply_augmentation` and `demand_reduction` are 0s. Let's use this logic to find water districts that have misreported data.
 
 ```{r}
-# Replacing NAs with 0s, assuming this as true 
+# Replace NAs with 0s, assuming this as true 
 five_year_replace_na <- five_year_shortage %>% 
   
   # Mutate existing columns and replace NAs with 0s
@@ -289,7 +308,7 @@ five_year_replace_na <- five_year_shortage %>%
          benefit_demand_reduction_acre_feet = 
            replace_na(benefit_demand_reduction_acre_feet, 0)) 
 
-# Creating a function that calculates supply + demand red + supply aug when Use > Supply
+# Create a function that calculates supply + demand red + supply aug when Use > Supply
 calculate_benefit <- function(df) {
   five_year_replace_na %>% 
     
@@ -307,28 +326,51 @@ calculate_benefit <- function(df) {
 # Use the function to reassign the df 
 five_year_replace_na <- calculate_benefit(five_year_replace_na)
 
-# Let's view the data where total_benefit does not equal total use
+# View the data where total_benefit does not equal total use
 five_year_na_filtered <- five_year_replace_na %>% 
   filter(total_benefit != 0,
          water_use_acre_feet != total_benefit)
 ```
 
-### Solution 3
+**Solution**
 
 From this output, we can see the local water districts that have areas of error. Similar to the first issue, there are no proper data science solutions to fix this problem, as it stems for the initial self-reporting from water districts.
 
 ### Issue 4: Not applicable Vs. missing values
 
-Lack of clear distinction between N/As, meaning that there is no distinction between non-applicable values and missing information.
+The dataset does not clearly distinguish between values that are genuinely *not applicable* and those that are simply missing. This ambiguity can lead to misinterpretation during analysis, as these two cases have different implications.
 
-### Solution 4
+**Solution**
 
-Have detailed metadata explaining the difference and how to identify that. If the difference is not identifiable, that should also be clear in the metadata.
+Provide detailed metadata that clearly defines the distinction between "not applicable" and "missing" values, including how each is represented in the dataset. If the distinction cannot be determined from the data source, that limitation should also be explicitly stated in the metadata to inform downstream users.
 
-### Issue 5: Standardize Naming
+### Issue 5: Standardize naming
 
-`supplier_name` could be normalized or matched against a unique registry to reduce duplicates or misspellings.
+The `supplier_name` field should be normalized or matched against a standardized registry to minimize inconsistencies. For example, the same city appears in two different datasets, but with differing labels, indicating a lack of uniform naming. This inconsistency can create challenges in the data integration and analysis.
 
-### Solution 5
+```{r}
+# Define the city to search for
+city <- 'coalinga'
 
-Add to the reporting form the list of water districts where user can select from.
+# Filter rows where 'supplier_name' contains the name 'coalinga' 
+
+five_year_match <- five_year_shortage %>%
+  filter(grepl(city, supplier_name, ignore.case = TRUE)) %>%
+  select(supplier_name) %>%
+  slice(1)  # Select only the first matching row
+
+
+actual_water_match <- actual_water_shortage_level %>%
+  filter(grepl(city, supplier_name, ignore.case = TRUE)) %>%
+  select(supplier_name) %>%
+  slice(1)  # Select only the first matching row
+
+# Print results
+
+print(paste('Five Year Shortage Name:', five_year_match$supplier_name))
+print(paste('Actual Water Shortage Level Name:', actual_water_match$supplier_name))
+```
+
+**Solution**
+
+To address this issue at its source, we recommend updating the reporting form to include a predefined list of recognized water districts that users can select from, rather than entering names manually. This will help ensure consistent naming and reduce errors caused by typos or variations. In the meantime, we are providing a script that standardizes existing data by aligning supplier names across datasets.
