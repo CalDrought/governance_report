@@ -1,0 +1,54 @@
+---
+title: "Recommendations for Governance, Training, and Staffing"
+subtitle: ""
+author: "Tom Gibbens-Matsuyama, Emma Bea Mitchell, Karol Paya, Takeen Shamloo"
+date: May 30, 2025
+execute: 
+  eval: True
+  warning: False
+  message: False
+format:
+  html: 
+    toc: true
+    toc-expand: 2
+    toc-title: 
+    toc-location: left
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+***From proposal - delete when report is completed***
+
+*Recommendations for governance, training, and staffing*
+
+*Based on the analysis conducted, what skills would you identify as necessary to conduct such a project? What training, governance, and staff roles do you believe would be necessary for water managers to reproduce this workflow and most efficiently maintain the dataset over time?*
+
+# **Introduction**
+
+As decision making in drought management is increasingly relying more on data and observable trends, the ability to collect, integrate, and analyze diverse datasets has become essential for proactive planning.This project developed a dashboard to support the California Water Data Consortium’s goals of enhancing transparency, usability, and completeness of local water agency reporting. By bringing together multiple datasets, including monthly and five-year water outlooks, actual shortages, and historical production, the dashboard enables users to visualize trends, identify gaps, and evaluate water supply and demand across service areas.
+
+This report outlines the technical skills required to maintain the dashboard, as well as the analytical skills needed to interpret and derive insights from the underlying data.
+
+# Recommendations for Governance, Training, and Staffing
+
+To reproduce and maintain the dashboard, staff need a combination of technical, analytical, and organizational capacities. Proficiency in R is essential, particularly for data wrangling tasks such as filtering, renaming variables, handling missing values, and detecting outliers. Staff should also be comfortable joining datasets from various sources and following reproducible workflows. Skills in geospatial analysis using packages like sf and tmap are critical for mapping service areas and visualizing spatial trends. \
+Familiarity with Shiny is necessary to build and maintain interactive components of the dashboard. Additionally, maintaining data integrity over time requires managing structured data pipelines and adhering to clear documentation and metadata standards. \
+\
+Collaboration with domain experts in water systems is also important to validate data assumptions, define meaningful indicators, and ensure outputs are aligned with real-world drought management needs.
+
+From a governance standpoint, it is essential to establish clear protocols for data updates, version control, and quality assurance. This includes maintaining centralized repositories (e.g., GitHub) with controlled access, automated testing scripts to flag missing or outlier values, and regular data audits to ensure completeness and consistency across reporting periods.
+
+Training programs should be developed to support cross-functional learning. Technical staff should be trained in water policy and data reporting standards, while managers and decision-makers should receive foundational training in interpreting dashboards, statistical summaries, and spatial visualizations. Lastly, a formal governance structure should assign ownership of the dashboard and data maintenance responsibilities to specific teams or individuals to ensure accountability for keeping the system current and accurate.
+
+## **Data Science Skills for Dashboard Management**
+
+Managing this dashboard requires a combination of data science and spatial data handling skills. Proficiency in R is essential, particularly with packages like `dplyr`, `tidyr`, `sf`, `tmap`, and `shiny`, `plotly`, which are used extensively for data wrangling, geospatial mapping, and building interactive applications. Understanding how to work with different data types including time series, spatial polygons, and categorical variables is crucial when preparing datasets for visualization and user interaction.
+
+In addition to technical coding skills, managing the dashboard involves a working knowledge of data validation, cleaning, and integration practices. The developer must be comfortable designing workflows that audit data completeness, filter based on user inputs, and join datasets from multiple sources with different structures and levels of quality. This also includes experience with version control (e.g., Git), many datasets are updated regularly, it’s important to have automation skills and understand how to structure reactive data pipelines within a dynamic application environment.
+
+## **Skills and Knowledge for Dataset Analysis**
+
+Analyzing datasets such as those used in this dashboard requires a solid foundation in exploratory data analysis, time series analysis, and applied statistics. Analysts must be comfortable working with large and occasionally incomplete datasets, identifying patterns and trends over time, and summarizing metrics such as average water shortages or discrepancies between water production and delivery. Proficiency in visualization is key—not just technically (e.g., with `ggplot2`, `tmap`, or `leaflet`), but also in terms of knowing which visual formats best reveal insights and communicate findings effectively to both technical and non-technical audiences.
+
+Domain knowledge in water resource management or environmental systems is also essential for meaningful interpretation. Analysts must understand concepts like drought forecasting, water use reporting standards, supply demand balancing. This kind of analysis also benefits from familiarity with spatial thinking and geographic patterns, particularly when assessing regional trends or identifying systemic reporting gaps.
