@@ -117,7 +117,42 @@ five_year_shortage_name <- five_year_shortage %>%
   
 ```
 
-**Data Check 1** The following is a method to check that each unique water district has 5 represented drought years.
+### Solution 1
+
+To address inconsistencies in the `supplier_name` field, we recommend standardizing the naming conventions for water suppliers across all data submissions and outputs. As a short-term solution, string manipulation—such as repositioning "City of" prefixes and converting names to title case—can be applied during preprocessing to improve readability and usability in plots and tables. However, for a more robust long-term solution, the use of unique identifiers (such as `org_id`) should be prioritized in analysis, with `supplier_name` treated as a display label only. We also recommend that the data providers issue guidance or validation checks during UWMP submissions to enforce a consistent naming schema across years and districts. This will reduce post-processing overhead and increase the comparability of results across datasets.
+
+Regarding the data check on drought year representation, we suggest including an automated validation step in the preprocessing pipeline that flags any `org_id` not reporting exactly five observations. These flags can be reviewed to determine whether the omissions are due to non-reporting, data entry errors, or justified exceptions (e.g., newly formed districts or incomplete UWMPs). Adding these QA steps ensures completeness and supports downstream reliability in long-term drought planning analyses.
+
+### Issue 2: PWSID's Containing NAs and Invalid values
+
+This issue focuses on the `pwsid` column and where values are either `NA` or not the correct 9 character length. Once again, the following will identify rows that have these discrepancies.
+
+```{r}
+# Vector of logical values indicating which rows are invalid
+invalid_values <- sapply(five_year_shortage$pwsid, function(x) {
+  if (is.na(x)) {
+    return(TRUE)
+  }
+  
+  # Split by comma
+  parts <- strsplit(x, ",")[[1]]
+  parts <- trimws(parts)
+  
+  # Return TRUE if any part is not 9 characters long
+  any(nchar(parts) != 9)
+})
+
+# Filter the original dataframe to return rows with invalid PWSID
+five_year_pwsid_invalids <- five_year_shortage[invalid_values, ]
+```
+
+### Solution 2
+
+This code returns a dataframe that shows which rows have invalid or `NA` `pwsid` values. Most observations within this returned dataframe consist of `NA` values, most likely stemming from not being reported correctly. However, some observations contain invalid `pwsid` values that ar enot the correct 9 character string length.
+
+### Datacheck 1
+
+The following is a method to check that each unique water district has 5 represented drought years.
 
 ```{r}
 # Check if each water district has five drought years
@@ -137,12 +172,6 @@ test_that("Each org_id should have exactly 5 observations", {
 })
 
 ```
-
-### Solution 1
-
-To address inconsistencies in the `supplier_name` field, we recommend standardizing the naming conventions for water suppliers across all data submissions and outputs. As a short-term solution, string manipulation—such as repositioning "City of" prefixes and converting names to title case—can be applied during preprocessing to improve readability and usability in plots and tables. However, for a more robust long-term solution, the use of unique identifiers (such as `org_id`) should be prioritized in analysis, with `supplier_name` treated as a display label only. We also recommend that the data providers issue guidance or validation checks during UWMP submissions to enforce a consistent naming schema across years and districts. This will reduce post-processing overhead and increase the comparability of results across datasets.
-
-Regarding the data check on drought year representation, we suggest including an automated validation step in the preprocessing pipeline that flags any `org_id` not reporting exactly five observations. These flags can be reviewed to determine whether the omissions are due to non-reporting, data entry errors, or justified exceptions (e.g., newly formed districts or incomplete UWMPs). Adding these QA steps ensures completeness and supports downstream reliability in long-term drought planning analyses.
 
 ## Historical Production and Delivery
 

@@ -139,7 +139,7 @@ test_that("Each org_id should hhave exactly 5 observations", {
 
 ### Issue 4
 
-This issue focuses on the `pwsid` column and where values are either `NA` or not the correct 9 character length. Once again, the following will identify rows that have these discrepanices.
+This issue focuses on the `pwsid` column and where values are either `NA` or not the correct 9 character length. Once again, the following will identify rows that have these discrepancies.
 
 ```{r}
 # Vector of logical values indicating which rows are invalid
