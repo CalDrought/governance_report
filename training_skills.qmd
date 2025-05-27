@@ -32,8 +32,8 @@ This report outlines the technical skills required to maintain the dashboard, as
 
 # Recommendations for Governance, Training, and Staffing
 
-To reproduce and maintain the dashboard, staff need a combination of technical, analytical, and organizational capacities. Proficiency in R is essential, particularly for data wrangling tasks such as filtering, renaming variables, handling missing values, and detecting outliers. Staff should also be comfortable joining datasets from various sources and following reproducible workflows. Skills in geospatial analysis using packages like sf and tmap are critical for mapping service areas and visualizing spatial trends. \
-Familiarity with Shiny is necessary to build and maintain interactive components of the dashboard. Additionally, maintaining data integrity over time requires managing structured data pipelines and adhering to clear documentation and metadata standards. \
+To reproduce and maintain the dashboard, staff need a combination of technical, analytical, and organizational capacities. Proficiency in R is essential, particularly for data wrangling tasks such as filtering, renaming variables, handling missing values, and detecting outliers. Staff should also be comfortable joining datasets from various sources and following reproducible workflows. Skills in geospatial analysis using packages like sf and tmap are critical for mapping service areas and visualizing spatial trends.\
+Familiarity with Shiny is necessary to build and maintain interactive components of the dashboard. Additionally, maintaining data integrity over time requires managing structured data pipelines and adhering to clear documentation and metadata standards.\
 \
 Collaboration with domain experts in water systems is also important to validate data assumptions, define meaningful indicators, and ensure outputs are aligned with real-world drought management needs.
 
