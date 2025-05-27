@@ -20,7 +20,7 @@ editor_options:
 
 # Introduction
 
-This document presents the results of a gap analysis of urban water data available on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessibility and usability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide an assessment of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. The report is organized into two main sections: Within Datasets and Across Datasets. \
+This document presents the results of a gap analysis of urban water data available on the [California Natural Resource Agency's website](https://data.cnra.ca.gov/dataset/urban-water-data-drought). The California Water Data Consortium, in partnership with the Department of Water Resources (DWR) and the State Water Resources and Control Board aim to improve urban water supplier data's accessibility and usability. In conjunction with UCSB's Bren School's Master of Environmental Data Science CalDrought Capstone Team, we aim to provide an assessment of the following data, providing a contextualized breakdown as well as written code for checking said breakdown. The report is organized into two main sections: Within Datasets and Across Datasets.\
 \
 The **Within Datasets** section focuses on internal inconsistencies or missing information found *within each individual dataset*. This includes issues such as incomplete fields, inconsistent formatting, unexpected data values, or gaps in time series data that reduce the reliability or interpretability of a single dataset on its own.
 
@@ -143,6 +143,31 @@ test_that("Each org_id should have exactly 5 observations", {
 To address inconsistencies in the `supplier_name` field, we recommend standardizing the naming conventions for water suppliers across all data submissions and outputs. As a short-term solution, string manipulation—such as repositioning "City of" prefixes and converting names to title case—can be applied during preprocessing to improve readability and usability in plots and tables. However, for a more robust long-term solution, the use of unique identifiers (such as `org_id`) should be prioritized in analysis, with `supplier_name` treated as a display label only. We also recommend that the data providers issue guidance or validation checks during UWMP submissions to enforce a consistent naming schema across years and districts. This will reduce post-processing overhead and increase the comparability of results across datasets.
 
 Regarding the data check on drought year representation, we suggest including an automated validation step in the preprocessing pipeline that flags any `org_id` not reporting exactly five observations. These flags can be reviewed to determine whether the omissions are due to non-reporting, data entry errors, or justified exceptions (e.g., newly formed districts or incomplete UWMPs). Adding these QA steps ensures completeness and supports downstream reliability in long-term drought planning analyses.
+
+### Issue 2: PWSID's Containing NAs and Invalid values
+
+This issue focuses on the `pwsid` column and where values are either `NA` or not the correct 9 character length. Once again, the following will identify rows that have these discrepancies.
+
+```{r}
+# Vector of logical values indicating which rows are invalid
+invalid_values <- sapply(five_year_shortage$pwsid, function(x) {
+  if (is.na(x)) {
+    return(TRUE)
+  }
+  
+  # Split by comma
+  parts <- strsplit(x, ",")[[1]]
+  parts <- trimws(parts)
+  
+  # Return TRUE if any part is not 9 characters long
+  any(nchar(parts) != 9)
+})
+
+# Filter the original dataframe to return rows with invalid PWSID
+five_year_pwsid_invalids <- five_year_shortage[invalid_values, ]
+```
+
+This code returns a dataframe that shows which rows have invalid or `NA` `pwsid` values. Most observations within this returned dataframe consist of `NA` values, most likely stemming from not being reported correctly. However, some observations contain invalid `pwsid` values that ar enot the correct 9 character string length.
 
 ## Historical Production and Delivery
 
