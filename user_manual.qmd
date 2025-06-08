@@ -29,11 +29,27 @@ Before using these scripts, ensure you have:
 -   Loaded the necessary R packages:
 
 ```{r}
-library(here) 
-library(janitor) 
-library(tidyverse) 
-library(sf) 
-library(tmap)
+library(here)             # File path management.
+library(janitor)          # Cleaning dataset variable names.
+library(tidyverse)        # Data transformation tools.
+library(sf)               # Managing spatial variables.
+library(tmap)             # Creating spatial visualizations.
+library(rmapshaper)       # Limiting spatial resolution of district boundaries.
+library(shiny)            # Core Shiny web framework
+library(shinydashboard)   # Useful for box UI and dashboards
+library(tools)            # Includes toTitleCase(), used to clean up dataset names
+library(shinyjs)          # Enables JavaScript interaction inside Shiny
+library(spnaf)            # Spatial analysis functions for network flows
+library(shinyBS)          # Bootstrap popovers and modals
+library(paletteer)        # For access to a wide variety of color palettes
+library(readr)            # CSV translations in r.
+library(ggplot2)          # Creating Visualizations.
+library(dplyr)            # Filtering, Sorting, and so on.
+library(bslib)            # Adding shiny app themes.
+library(shinyWidgets)     # Extra shiny app widgets/tools.
+library(plotly)           # Creating interactive plots 
+library(DT)               # For tabling data.
+library(shinycssloaders)  # Adding loading spinner ui.
 ```
 
 -   Loaded and cleaned your data into:
@@ -99,8 +115,6 @@ This panel is supported by a set of utility functions that filter and aggregate 
 
 -   **Monthly Outlook Summary (`monthly_values_function_sum_stat`)**: Summarizes forecasted monthly water values in acre-feet for a selected date range and supplier.
 
--   **Monthly Duration Count (`monthly_months_function`)**: Calculates how many months within the selected date range report values for each water use or supply type.
-
 -   **Actual Shortage Data (`actual_filter_function_sum_stats`)**: Filters the actual shortage dataset by supplier ID and time range, returning entries that match the selected period.
 
 -   **Historical Production Data (`hist_filt_function_sum_stats`)**: Filters the historical production data for a given supplier and time range. It computes the total quantities produced and delivered, and handles missing values by converting them to zero.
@@ -128,3 +142,15 @@ The Missing Value Panel is designed to audit data completeness over a the select
     -   `actual_na()`
     -   `fiveyr_na()`
     -   `hist_na()`
+
+## **Additional Helpful Notes**
+
+### **Supplier Name Standardization**
+Although the clean_supplier_name function should automatically standardize names, please refer to this standardization when adding new supplier names to the data:
+
+- Any name ending with ",city of" should be changed to starting with "city of"
+- All supplier names should be in capital case
+- Spell out any abbreviations (i.e. change I.d. to Irrigation District)
+- With the exception of Cal Am, all company full names should be spelled out completely
+- No periods should be included in the names
+- Refer to the function for additional specifics
